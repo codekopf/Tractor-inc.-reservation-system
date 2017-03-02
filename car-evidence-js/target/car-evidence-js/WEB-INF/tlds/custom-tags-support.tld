@@ -1,0 +1,128 @@
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">
+     
+    <tlib-version>1.0</tlib-version>
+    <short-name>CustomBaseTagSupport</short-name>
+
+    <tag>
+        <description>
+            Prevadi zalomeni radku na xhtml element "br"
+        </description>
+        <name>nl2br</name>
+        <tag-class>cz.ucl.hatchery.carevidence.tags.NLtoBRTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>Vygeneruje odkaz z url parametru</description>
+        <name>link-from-url</name>
+        <tag-class>cz.ucl.hatchery.carevidence.tags.LinkFromUrlTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>url</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>limitParams</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <dynamic-attributes>true</dynamic-attributes>
+    </tag>
+
+    <tag>
+        <description>Vygeneruje hidden inputy z url parametru</description>
+        <name>hidden-inputs-from-url</name>
+        <tag-class>cz.ucl.hatchery.carevidence.tags.HiddenInputsFromUrlTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>limitParams</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <dynamic-attributes>true</dynamic-attributes>
+    </tag>
+
+    <tag>
+        <description>Vygeneruje hodnotu smeru razeni pro parametr v odkazu pro razeni</description>
+        <name>order-dir-type</name>
+        <tag-class>cz.ucl.hatchery.carevidence.tags.OrderDirectionTypeTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>orderColumn</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>tableOrdering</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute> 
+        <attribute>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+
+	    <tag>
+        <description>Vlozit do JSP sablony hodnotu z konfigurace aplikace</description>
+        <name>system-config</name>
+        <tag-class>cz.ucl.hatchery.carevidence.tags.SystemConfigTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>key</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>                        
+        </attribute>
+        <attribute>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>                        
+        </attribute>
+    </tag>
+
+	
+	<tag>
+        <description>
+	        Print list of String characters as comma delimited values
+	 		Examples:
+			a, b, c, d
+	 		a, b, c, ...
+	 		a, b, ...
+	 		a|b|c...
+        </description>
+        <name>print-list</name>
+        <tag-class>cz.ucl.hatchery.carevidence.tags.PrintListTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute> 
+      	<attribute>
+            <name>numberOfValuesToShow</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>delimiter</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>endTag</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>

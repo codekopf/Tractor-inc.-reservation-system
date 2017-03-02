@@ -1,0 +1,69 @@
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>CustomTilesSupport</short-name>
+
+    <tag-file>
+        <description>Vytvori definice tiles:addAttribute pro pridani JS souboru pro JS custom </description>
+        <name>put-custom-localize-js</name>
+        <path>/WEB-INF/tags/tiles/put-custom-localize-js.tag</path>
+    </tag-file>
+    
+    <tag-file>
+        <description>Vytvori definice tiles:addAttribute pro pridani JS souboru pro JS validatorEngine</description>
+        <name>put-validation-js</name>
+        <path>/WEB-INF/tags/tiles/put-validation-js.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>Vytvori definice tiles:addAttribute pro pridani CSS souboru pro JS validatorEngine</description>
+        <name>put-validation-css</name>
+        <path>/WEB-INF/tags/tiles/put-validation-css.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>Vytvori definice tiles:addAttribute pro pridani JS datepickeru</description>
+        <name>put-datepicker-js</name>
+        <path>/WEB-INF/tags/tiles/put-datepicker-js.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>Vytvori html elementy do hlavicky stranky (head) pro prilinkovani CSS souboru do stranky</description>
+        <name>css-files-list</name>
+        <path>/WEB-INF/tags/tiles/css-files-list.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>Vytvori html elementy do hlavicky stranky (head) pro prilinkovani JS souboru do stranky</description>
+        <name>js-files-list</name>
+        <path>/WEB-INF/tags/tiles/js-files-list.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>Vypise seznam chyb</description>
+        <name>print-errors</name>
+        <path>/WEB-INF/tags/tiles/print-errors.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>Vypise seznam oznameni</description>
+        <name>print-notices</name>
+        <path>/WEB-INF/tags/tiles/print-notices.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>Vypise seznam varovani</description>
+        <name>print-warnings</name>
+        <path>/WEB-INF/tags/tiles/print-warnings.tag</path>
+    </tag-file>
+    
+    <tag-file>
+        <description>Vlozi do stranky reloader pro parenti okno pri zavirani soucasneho. Povinny parametr reloadParent; hodnoty true/false  </description>
+        <name>parent-reloader</name>
+        <path>/WEB-INF/tags/tiles/parent-reloader.tag</path>
+    </tag-file>
+
+</taglib>

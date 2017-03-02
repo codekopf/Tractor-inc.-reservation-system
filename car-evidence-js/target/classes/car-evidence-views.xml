@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<!--     
+    ERROR PAGES 
+____________________________________________________________________________  
+-->
+
+    <bean id="page401" class="org.springframework.web.servlet.view.JstlView">
+        <property name="url" value="/WEB-INF/jsp/base/401.jsp" />
+    </bean>
+
+    <bean id="page404" class="org.springframework.web.servlet.view.JstlView">
+        <property name="url" value="/WEB-INF/jsp/base/404.jsp" />
+    </bean>
+    
+    <bean id="page500" class="org.springframework.web.servlet.view.JstlView">
+        <property name="url" value="/WEB-INF/jsp/base/500.jsp" />
+    </bean>
+
+<!--     
+    BASE PAGES 
+____________________________________________________________________________    
+-->
+
+    <bean id="homepage" class="org.springframework.web.servlet.view.JstlView">
+        <property name="url" value="/WEB-INF/jsp/base/homepage.jsp" />
+    </bean>
+    
+    <bean id="add-new-car" class="org.springframework.web.servlet.view.JstlView">
+        <property name="url" value="/WEB-INF/jsp/car/add-new-car.jsp" />
+    </bean>
+    
+    <bean id="car-list" class="org.springframework.web.servlet.view.JstlView">
+        <property name="url" value="/WEB-INF/jsp/car/car-list.jsp" />
+    </bean>
+    
+
+</beans>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <web-app id="CAREVIDENCE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://java.sun.com/xml/ns/javaee" 
+		 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+		 version="3.0">
+
+	<display-name>Car Evidence</display-name>
+    
+    <!-- car-evidence & LOG4J-->
+    <listener>
+        <listener-class>cz.ucl.hatchery.carevidence.web.CarEvidenceContextListener</listener-class>
+    </listener>
+    
+	<!-- APP CONTEXT -->
+	<context-param>
+	    <param-name>contextConfigLocation</param-name>
+	    <param-value>classpath:car-evidence-context.xml</param-value>
+	</context-param>
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+		<listener-class>
+    		org.springframework.web.context.request.RequestContextListener
+		</listener-class>
+	</listener>
+	
+    <!-- MAIN SERVLET -->
+    <servlet>
+        <servlet-name>car-evidence</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+	      <param-name>dispatchOptionsRequest</param-name>
+	      <param-value>true</param-value>
+	    </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>	
+
+    <servlet-mapping>
+        <servlet-name>car-evidence</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+	
+	<servlet-mapping>
+            <servlet-name>default</servlet-name>
+            <url-pattern>/static/*</url-pattern>
+    </servlet-mapping>
+    
+    
+	<filter>
+	  <filter-name>requestContextFilter</filter-name>
+	  <filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	  <filter-name>requestContextFilter</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+    <filter>
+        <filter-name>carEvidenceCommonSetupFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>carEvidenceCommonSetupFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>carEvidenceAuthenticationFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>carEvidenceAuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>requestQueryStringFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>requestQueryStringFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+ 
+    <!-- custom tags -->
+    <jsp-config>
+        <taglib>
+            <taglib-uri>cz/ucl/hatchery/carevidence/Support</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/custom-tags-support.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>cz/ucl/hatchery/carevidence/Widgets</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/custom-widgets.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>cz/ucl/hatchery/carevidence/TilesSupport</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/custom-tiles-support.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+	
+</web-app>

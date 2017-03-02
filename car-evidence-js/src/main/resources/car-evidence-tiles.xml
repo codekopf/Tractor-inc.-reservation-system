@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+    <definition name="carevidence.default" template="/WEB-INF/jsp/common/layout-default.jsp" preparer="cz.ucl.hatchery.carevidence.tiles.preparer.PagePreparer">
+
+        <put-attribute name="title" value="CarEvidence" />
+        <put-attribute name="h2-title" value="CarEvidence" />
+        
+        <put-attribute name="metahead" value="/WEB-INF/jsp/common/metahead.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/jsp/common/header.jsp" />
+        <put-attribute name="geko-message" value="/WEB-INF/jsp/common/geko-message.jsp" />
+        <put-attribute name="main-navigation" value="/WEB-INF/jsp/common/main-navigation.jsp" />
+        <put-attribute name="errors-notices" value="/WEB-INF/jsp/common/errors-notices.jsp" />
+        <put-attribute name="body" /> 
+        <put-attribute name="active-version-button" value=""/> 
+        <put-attribute name="footer" value="/WEB-INF/jsp/common/footer.jsp" />
+        <put-attribute name="js-common-startup" value="/WEB-INF/jsp/common/js-common-startup.jsp" />
+
+        <put-attribute name="js-startup" />
+        
+        <!-- TODO tiskove styly? -->
+        <put-list-attribute name="cssfiles">
+            <add-attribute value="style/jquery-ui-1.10.2.custom.css" />
+            <add-attribute value="style/main.css" />
+        </put-list-attribute>
+
+        <put-list-attribute name="jsfiles">
+            <add-attribute value="js/jquery-1.9.1.min.js" />
+            <add-attribute value="js/jquery.tablesorter.min.js" />
+			<add-attribute value="js/jquery-scroll-1.4.3.1.min.js" />
+            <add-attribute value="js/jquery-ui-1.10.2.custom.min.js" />
+            <add-attribute value="js/car-evidence.js" />
+            <add-attribute value="js/loading-wrapper.js" />
+        </put-list-attribute>
+
+    </definition>
+
+    <definition name="carevidence.popup" template="/WEB-INF/jsp/common/layout-popup.jsp" preparer="cz.ucl.hatchery.carevidence.tiles.preparer.BasicPagePreparer">
+
+        <put-attribute name="title" value="CarEvidence" />
+        <put-attribute name="metahead" value="/WEB-INF/jsp/common/metahead.jsp"/>
+        <put-attribute name="errors-notices" value="/WEB-INF/jsp/common/errors-notices.jsp" />
+        <put-attribute name="body" />
+        <put-attribute name="body-class" value="" />
+
+        <put-attribute name="js-startup" />
+        
+        <put-list-attribute name="cssfiles">
+            <add-attribute value="static/style/jquery-ui-1.10.2.custom.css" />
+            <add-attribute value="static/style/main.css" />
+        </put-list-attribute>
+
+        <put-list-attribute name="jsfiles">
+            <add-attribute value="static/js/jquery-1.9.1.min.js" />
+            <add-attribute value="static/js/jquery-ui-1.10.2.custom.min.js" />
+            <add-attribute value="static/js/car-evidence.js" />
+            <add-attribute value="static/js/loading-wrapper.js" />
+        </put-list-attribute>
+
+    </definition>
+
+</tiles-definitions>

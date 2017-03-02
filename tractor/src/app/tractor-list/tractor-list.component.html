@@ -1,0 +1,79 @@
+<div class="tractor-list">
+  <h2>Seznam traktorů (vozidel)</h2>
+
+  <div class="panel panel-default" *ngIf="showNewCarForm">
+    <div class="panel-heading">Přidání nového vozidla</div>
+
+    <div class="panel-body">
+      <form class="form" [formGroup]="newCarForm" (ngSubmit)="createNewCar()">
+        <div class="form-group">
+          <label for="type">Typ</label>
+          <input type="text" class="form-control" formControlName="type" id="type">
+        </div>
+        <div class="form-group">
+          <label for="vin">VIN</label>
+          <input type="text" class="form-control" formControlName="vin" id="vin">
+        </div>
+        <div class="form-group">
+          <label for="testDatum">Datum</label>
+          <input type="text" class="form-control" formControlName="testDatum" id="testDatum">
+        </div>
+        <div class="form-group">
+          <label for="price">Cena</label>
+          <input type="text" class="form-control" formControlName="price" id="price">
+        </div>
+      </form>
+    </div>
+    <div class="panel-footer">
+      <button type="button" class="btn btn-warning" (click)="showNewCarForm=false">Zavřít</button>
+      <button type="submit" class="btn btn-primary" (click)="createNewCar()">Ulož</button>
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Seznam vozidel
+      <button *ngIf="!showNewCarForm" type="button" class="btn btn-default btn-xs pull-right"
+              (click)="showNewCarForm=true">Přidat
+      </button>
+    </div>
+    <div class="panel-body">
+      <form [formGroup]="filterForm" class="tractor-filter" (ngSubmit)="filterTractor()" class="form-inline">
+        <div class="form-group">
+          <label for="acquiredFrom">Od</label>
+          <input type="text" class="form-control" formControlName="acquiredFrom" id="acquiredFrom">
+        </div>
+        <div class="form-group">
+          <label for="acquiredto">Do</label>
+          <input type="text" class="form-control" formControlName="acquiredTo" id="acquiredTo">
+        </div>
+        <button type="submit" class="btn btn-default">Filtruj</button>
+        <button type="button" class="btn btn-warning" (click)="filtred && getCars()" [ngClass]="{disabled : !filtred}">
+          Zruš filtr
+        </button>
+      </form>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-striped" *ngIf="tractorList && tractorList.length">
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>type</th>
+        <th>vin</th>
+        <th>state</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let tractor of tractorList">
+        <td>{{tractor.id}}</td>
+        <td>{{tractor.type}}</td>
+        <td>{{tractor.vin}}</td>
+        <td>{{tractor.carState}}</td>
+      </tr>
+    </table>
+    <p *ngIf="!tractorList || !tractorList.length">Není tu žádný traktor</p>
+
+  </div>
+
+</div>

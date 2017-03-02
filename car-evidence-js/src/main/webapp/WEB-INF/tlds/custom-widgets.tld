@@ -1,0 +1,297 @@
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>Custom_widgets</short-name>
+
+     <tag>
+        <description>
+            Vypisuje chyby s ohledem na jejich kod - prekryva tag form:errors ze spring mvc 
+        </description>
+        <name>errors</name>
+        <tag-class>cz.ucl.hatchery.carevidence.tags..ApplicationErrorsTag</tag-class>
+        <body-content>JSP</body-content>
+        <variable>
+            <name-given>messages</name-given>
+            <variable-class>java.util.List</variable-class>
+        </variable>
+        <attribute>
+            <description>Path to errors object for data binding</description>
+            <name>path</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Enable/disable HTML escaping of rendered values.</description>
+            <name>htmlEscape</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Delimiter for displaying multiple error messages. Defaults to the br tag.</description>
+            <name>delimiter</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Equivalent to "class" - HTML Optional Attribute</description>
+            <name>cssClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Equivalent to "style" - HTML Optional Attribute</description>
+            <name>cssStyle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>lang</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>title</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>dir</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>tabindex</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Event Attribute</description>
+            <name>onclick</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Event Attribute</description>
+            <name>ondblclick</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Event Attribute</description>
+            <name>onmousedown</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Event Attribute</description>
+            <name>onmouseup</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Event Attribute</description>
+            <name>onmouseover</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Event Attribute</description>
+            <name>onmousemove</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Event Attribute</description>
+            <name>onmouseout</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Event Attribute</description>
+            <name>onkeypress</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Event Attribute</description>
+            <name>onkeyup</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Event Attribute</description>
+            <name>onkeydown</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Specifies the HTML element that is used to render the enclosing errors.</description>
+            <name>element</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <dynamic-attributes>true</dynamic-attributes>        
+    </tag>    
+    
+    <tag-file>
+        <description>Vypisuje do stranky text Ano / Ne; vstupni parametr je boolean</description>
+        <name>print-boolean</name>
+        <path>/WEB-INF/tags/print-boolean.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>Vypisuje do stranky procentovou hodnotu; vstupni parametr je v procentech (1..100)</description>
+        <name>print-percent</name>
+        <path>/WEB-INF/tags/print-percent.tag</path>
+    </tag-file>
+    
+    <tag-file>
+        <description>Vypisuje do stranky procentovou hodnotu; vstupni parametr je v procentove mire (0.01..1)</description>
+        <name>print-percentage-rate</name>
+        <path>/WEB-INF/tags/print-percentage-rate.tag</path>
+    </tag-file>
+    
+    <tag-file>
+        <description>Vypisuje do stranky hodnotu celeho cisla; vstupni parametr je v celeho cisla. Volitelny parametr je pattern.</description>
+        <name>print-number</name>
+        <path>/WEB-INF/tags/print-number.tag</path>
+    </tag-file>
+    <tag-file>
+        <description>Vypisuje do stranky hodnotu cisla; vstupni parametr je v cislo. Volitelny parametr je pattern.</description>
+        <name>print-real-number</name>
+        <path>/WEB-INF/tags/print-real-number.tag</path>
+    </tag-file>
+    <tag-file>
+        <description>Vypisuje do stranky hodnotu cisla; vstupni parametr je v cisla. Volitelny parametr je pattern.</description>
+        <name>print-price</name>
+        <path>/WEB-INF/tags/print-price.tag</path>
+    </tag-file>
+
+
+    <tag-file>
+        <description>
+            Vygeneruje "zalozkove" menu na zaklade kolekce s polozkami pro menu;
+            Parametry:
+        </description>
+        <name>bookmark-menu</name>
+        <path>/WEB-INF/tags/bookmark-menu.tag</path>
+    </tag-file>    
+ 
+    <tag-file>
+        <description>
+            Vygeneruje strankovani pod tabulkou;
+            Parametry: 
+                itemsCount: celkovy pocet polozek
+                pagesCount: pocet stranek
+                pagerItems: list s jednotlivymi polozky ve strankovani vcetne polozek se sipkami
+        </description>
+        <name>pager</name>
+        <path>/WEB-INF/tags/pager.tag</path>
+    </tag-file>      
+
+    <tag-file>
+        <description>
+            Vygeneruje odkaz s parametry pro razeni dat do hlavicky tabulky;
+            Parametry: 
+                messageCode: klic nazvu odkazu z resource bundle
+                actualTableOrdering: instance TableOrderDTO s stavem aktualnim razeni
+                orderColumn: hodnota parametru s nazvem sloupce, podle ktere se ma po kliknuti na odkaz radit
+        </description>
+        <name>order-link</name>
+        <path>/WEB-INF/tags/order-link.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>
+            Vygeneruje radek do tabulky s textem "nebyly nalezeny zadne polozky";
+            Parametry: 
+                colspan: hodnota pro atribut colspan
+        </description>
+        <name>no-items-table-row</name>
+        <path>/WEB-INF/tags/no-items-table-row.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>
+            Vygeneruje radek do tabulky a podle jeho poradi mu nastaveni barvu pozadi;
+            Parametry:
+                rowcount: poradi radku
+                indexcell: boolean - ma vygenerovat prvni bunku s cislem radku?
+        </description>
+        <name>interlaced-table-row</name>
+        <path>/WEB-INF/tags/interlaced-table-row.tag</path>
+    </tag-file>
+    
+    <tag-file>
+        <description>
+            Vygeneruje JS kod pro spusteni validatoru nad danym HTML formem
+            Parametry:
+                form: ID HTML formu
+        </description>
+        <name>js-form-validator</name>
+        <path>/WEB-INF/tags/js-form-validator.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>
+            Vygeneruje JS kod pro inicializaci datepickeru nad formularovym polem
+            Parametry:
+                query: JS query elementu, nad kterymi ma byt spusten DatePicker
+                params: paramtry ve formatu JSON
+        </description>
+        <name>js-datepicker</name>
+        <path>/WEB-INF/tags/js-datepicker.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>
+            Vygeneruje JS kod pro setup datepickeru
+            Parametry:
+                dateformat: retezec s formatem datumu
+        </description>
+        <name>js-setup-datepicker</name>
+        <path>/WEB-INF/tags/js-setup-datepicker.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description>
+            Vygeneruje form input s validaci nebo c:out
+            Parametry: 
+                editable: urcuje zda se vygeneruje form input nebo c:out
+                path: cesta k editevanemu atributu v model atributu
+                required: zda je vyplneni pole povinne (default=true)
+                validation: dostane se do class ve forme validate[required,validation]
+                size: velikost vstupniho pole
+                value: hodnota k zobrazeni kdyz polozka neni editovatelna
+        </description>
+        <name>validated-form-input</name>
+        <path>/WEB-INF/tags/validated-form-input.tag</path>
+    </tag-file>
+
+    <tag-file>
+        <description></description>
+        <name>editable-form-field</name>
+        <path>/WEB-INF/tags/editable-form-field.tag</path>    
+    </tag-file>
+    
+    
+    <tag-file>
+        <description>Rozdeli text dle delimiter (default ' ') a vypisuje jednotlive polozky do naplneni max. delky length (default 30).</description>
+        <name>print-string-specific-trimmer</name>
+        <path>/WEB-INF/tags/print-string-specific-trimmer.tag</path>
+    </tag-file>
+
+</taglib>
