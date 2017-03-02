@@ -1,11 +1,12 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpModule, JsonpModule} from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { TractorListComponent } from './tractor-list/tractor-list.component';
+// INSERT COMPONENTS HERE
 import { ApiService } from './shared';
 import { routing } from './app.routing';
 
@@ -25,6 +26,7 @@ import { TractorService } from './shared/tractor.service';
     AppComponent,
     TractorListComponent,
     AboutComponent
+    // INSERT COMPONENTS HERE
   ],
   providers: [
     ApiService,

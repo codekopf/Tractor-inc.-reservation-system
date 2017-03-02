@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {TractorService} from '../shared/tractor.service';
-import {FormGroup, FormBuilder} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { TractorService } from '../shared/tractor.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'my-tractor-list',
   templateUrl: './tractor-list.component.html',
