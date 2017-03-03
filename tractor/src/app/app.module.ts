@@ -1,3 +1,5 @@
+
+
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
@@ -9,11 +11,18 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { TractorListComponent } from './tractor-list/tractor-list.component';
 // INSERT COMPONENTS HERE
+// import { ClientListComponent } from './clients/client-list.component';
+// import { LendingListComponent } from './lendings/lending-list.component';
+// import { RepairListComponent } from './repairs/repair-list.component';
+// import { STKListComponent } from './stks/stk-list.component';
+
 import { ApiService } from './shared';
 import { routing } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import { TractorService } from './shared/tractor.service';
+// import { RepairService } from './shared/tractor.service';
+// import { STKService } from './shared/tractor.service';
 
 @NgModule({
   imports: [
@@ -28,12 +37,20 @@ import { TractorService } from './shared/tractor.service';
   declarations: [
     AppComponent,
     TractorListComponent,
-    AboutComponent
+    AboutComponent,
     // INSERT COMPONENTS HERE
+    // ClieantListComponent,
+    // LendingListComponent,
+    // RepairsListComponent,
+    // STKListComponent
   ],
   providers: [
     ApiService,
-    TractorService
+    TractorService,
+    // ClieantService,
+    // LendingService,
+    // RepairService,
+    // STKService
   ],
   bootstrap: [AppComponent]
 })
