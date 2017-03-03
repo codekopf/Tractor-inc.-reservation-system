@@ -15,6 +15,9 @@ export class TractorListComponent implements OnInit {
   public showNewCarForm: boolean;
   public filtred: boolean;
 
+  // Custom
+  public specificTractorID: number;
+
   constructor(public tractorService: TractorService, private fb: FormBuilder) {
     this.getCars();
   }
@@ -76,5 +79,7 @@ export class TractorListComponent implements OnInit {
       () => console.log('Completed!')
     );
   }
+
+
 
 }
