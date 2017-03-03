@@ -12,7 +12,7 @@ export class TractorService {
 
 
   getCars() {
-    return this.http.get('http://localhost:8099/car-evidence-js/cars').map(res => res.json());
+    return this.http.get('http://localhost:8095/car-evidence-js/cars').map(res => res.json());
   }
 
   findCars(params: SearchParams) {
@@ -20,7 +20,7 @@ export class TractorService {
     parameters.set('acquiredFrom', params.acquiredFrom);
     parameters.set('acquiredTo', params.acquiredTo);
 
-    return this.http.get('http://localhost:8099/car-evidence-js/cars/find', {search: parameters}).map(res => res.json());
+    return this.http.get('http://localhost:8095/car-evidence-js/cars/find', {search: parameters}).map(res => res.json());
   }
 
 
@@ -29,7 +29,7 @@ export class TractorService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(
-      'http://localhost:8099/car-evidence-js/cars/new',
+      'http://localhost:8095/car-evidence-js/cars/new',
       JSON.stringify(car),
       options);
   }

@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { MaterialModule } from '@angular/material';
+
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { TractorListComponent } from './tractor-list/tractor-list.component';
@@ -19,6 +21,7 @@ import { TractorService } from './shared/tractor.service';
     HttpModule,
     JsonpModule,
     FormsModule,
+    MaterialModule
     ReactiveFormsModule,
     routing
   ],

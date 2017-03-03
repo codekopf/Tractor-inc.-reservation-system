@@ -4,14 +4,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
-@RequestMapping(value = ErrorPageController.BASE_URL)
+@RestController
+@RequestMapping(value = ErrorPageController.BASE_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class ErrorPageController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ErrorPageController.class);
@@ -51,24 +52,24 @@ public class ErrorPageController {
 		String viewName;
 		switch (status) {
 
-		case HttpServletResponse.SC_UNAUTHORIZED:
-			viewName = ControllerConstants.VIEW_NAME_PAGE401;
-			break;
+			case HttpServletResponse.SC_UNAUTHORIZED:
+				viewName = ControllerConstants.VIEW_NAME_PAGE401;
+				break;
 
-		case HttpServletResponse.SC_FORBIDDEN:
-			viewName = ControllerConstants.VIEW_NAME_PAGE403;
-			break;
+			case HttpServletResponse.SC_FORBIDDEN:
+				viewName = ControllerConstants.VIEW_NAME_PAGE403;
+				break;
 
-		case HttpServletResponse.SC_INTERNAL_SERVER_ERROR:
-			viewName = ControllerConstants.VIEW_NAME_PAGE500;
-			break;
+			case HttpServletResponse.SC_INTERNAL_SERVER_ERROR:
+				viewName = ControllerConstants.VIEW_NAME_PAGE500;
+				break;
 
-		case HttpServletResponse.SC_NOT_FOUND:
-			viewName = ControllerConstants.VIEW_NAME_PAGE404;
-			break;
+			case HttpServletResponse.SC_NOT_FOUND:
+				viewName = ControllerConstants.VIEW_NAME_PAGE404;
+				break;
 
-		default:
-			viewName = ControllerConstants.VIEW_NAME_ERROR;
+			default:
+				viewName = ControllerConstants.VIEW_NAME_ERROR;
 
 		}
 		return viewName;
