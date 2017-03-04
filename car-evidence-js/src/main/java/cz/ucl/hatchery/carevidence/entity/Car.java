@@ -69,6 +69,7 @@ public class Car {
 
 	/**
 	 * @param id the id to set
+	 *            TODO - This should be probably deleted
 	 */
 	public void setId(final Long id) {
 		this.id = id;

@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.ucl.hatchery.carevidence.entity.Car;
+import cz.ucl.hatchery.carevidence.entity.Client;
 import cz.ucl.hatchery.carevidence.model.CarDTO;
+import cz.ucl.hatchery.carevidence.model.ClientDTO;
 
 /**
  * @author User
@@ -38,4 +40,29 @@ public class DTOConverter {
 
 		return dtos;
 	}
+
+	public static ClientDTO convertClient(final Client client) {
+		final ClientDTO dto = new ClientDTO();
+
+		dto.setId(client.getId());
+		dto.setClientName(client.getClientName());
+		dto.setClientSurname(client.getClientSurname());
+		dto.setClientICO(client.getClientICO());
+		dto.setClientEmail(client.getClientEmail());
+		dto.setClientDateOfRegistraion(client.getClientDateOfRegistraion());
+		dto.setClientPhone(client.getClientPhone());
+
+		return dto;
+	}
+
+	public static List<ClientDTO> convertClient(final List<Client> clients) {
+		final List<ClientDTO> dtos = new ArrayList<ClientDTO>();
+
+		for (final Client client : clients) {
+			dtos.add(convertClient(client));
+		}
+
+		return dtos;
+	}
+
 }
