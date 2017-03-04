@@ -1,4 +1,7 @@
 .metadata
 .recommendaers
+.idea
 RemoteSystemsTempFiles
 Servers
+*.js
+npm-debug.log
