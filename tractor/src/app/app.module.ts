@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { TractorListComponent } from './tractor-list/tractor-list.component';
 // INSERT COMPONENTS HERE
-// import { ClientListComponent } from './clients/client-list.component';
+import { ClientListComponent } from './client-list/client-list.component';
 // import { LendingListComponent } from './lendings/lending-list.component';
 // import { RepairListComponent } from './repairs/repair-list.component';
 // import { STKListComponent } from './stks/stk-list.component';
@@ -21,6 +21,7 @@ import { routing } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import { TractorService } from './shared/tractor.service';
+import { ClientService } from './shared/client.service';
 // import { RepairService } from './shared/tractor.service';
 // import { STKService } from './shared/tractor.service';
 
@@ -30,7 +31,7 @@ import { TractorService } from './shared/tractor.service';
     HttpModule,
     JsonpModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
     ReactiveFormsModule,
     routing
   ],
@@ -39,7 +40,7 @@ import { TractorService } from './shared/tractor.service';
     TractorListComponent,
     AboutComponent,
     // INSERT COMPONENTS HERE
-    // ClieantListComponent,
+    ClientListComponent,
     // LendingListComponent,
     // RepairsListComponent,
     // STKListComponent
@@ -47,7 +48,7 @@ import { TractorService } from './shared/tractor.service';
   providers: [
     ApiService,
     TractorService,
-    // ClieantService,
+    ClientService
     // LendingService,
     // RepairService,
     // STKService

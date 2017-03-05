@@ -79,7 +79,4 @@ export class TractorListComponent implements OnInit {
       () => console.log('Completed!')
     );
   }
-
-
-
 }

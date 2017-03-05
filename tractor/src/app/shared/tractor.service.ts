@@ -42,13 +42,13 @@ export class TractorService {
 
   // Updated selected car
   // TODO
-  updateCar(car: any) {
-  }
+  // updateCar(car: any) {
+  // }
 
   // Delete selected car
   // TODO
-  deleteCar(id: number) {
-  }
+  // deleteCar(id: number) {
+  // }
 
 
 }
