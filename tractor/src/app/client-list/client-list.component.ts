@@ -44,16 +44,6 @@ export class ClientListComponent implements OnInit {
     this.showOldClientForm = false;
   }
 
-  // public findClient(clientID: number){
-  //   console.log('Something is going on ' + clientID + ' number');
-
-  //   this.clientService.findClient(clientID).subscribe(
-  //       clients => this.clientList = clients,
-  //       error => console.error('Error: ' + error),
-  //       () => console.log('Completed!')
-  //     );
-  // }
-
   public getClients() {
     this.filtred = false;
     this.clientList = this.clientService.getClients()
@@ -83,6 +73,11 @@ export class ClientListComponent implements OnInit {
     this.showNewClientForm = false;
   }
 
+    public reloadClientsOverOldCLientForm() {
+    this.getClients();
+    this.showOldClientForm = false;
+  }
+
   public createNewClient() {
     // NEVIEM AKO SA TO ROBI
     this.addNewClient(this.newClientForm.value);
@@ -107,15 +102,6 @@ export class ClientListComponent implements OnInit {
     this.clientService.findClient(filter).subscribe(
       client => {
         this.client = client;
-        // if (this.client == null) {
-        //   console.log("hmmmm - sakra");
-        // } else {
-        //   console.log(this.client);
-        //   for (let i in client[0]) {
-        //     console.log(i);
-        //     console.log(i.clientICO);
-        //   }
-        // }
         this.oldClientForm = this.fb.group({
           id: client[0].id,
           clientName: client[0].clientName,
@@ -137,7 +123,7 @@ export class ClientListComponent implements OnInit {
     this.oldClient = this.oldClientForm.value;
      console.log(this.oldClient);
     this.clientService.editClient(this.oldClient).subscribe(
-      () => this.reloadClients(),
+      () => this.reloadClientsOverOldCLientForm(),
       error => console.error('Error: ' + error),
       () => console.log('Completed!')
     );

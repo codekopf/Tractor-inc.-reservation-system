@@ -32,12 +32,13 @@ public class AddNewCarController {
 	private MessageSource messageSource;
 
 	/*
-	 * Provede ulozeni vozidla URI: /cars/new Method: POST
+	 * Provede ulozeni vozidla
+	 * URI: /cars/new
+	 * Method: POST
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public void addNewCar(@RequestBody final CarNewForm carNewForm) {
 
-		// TODO Validate model
 		carManagerService.createNewCar(carNewForm);
 
 		final String message = messageSource.getMessage(RequestParamsConstants.SAVE_NOTICE, new Object[] {},

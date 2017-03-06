@@ -23,7 +23,9 @@ public class HomePageController {
 	private ApplicationContext applicationContext;
 
 	/*
-	 * Vraci homepage aplikace URI: / Method: GET
+	 * Vraci homepage aplikace
+	 * URI: /
+	 * Method: GET
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView homepage() {
@@ -43,8 +45,8 @@ public class HomePageController {
 	 */
 	private void setupStartupTime(final ModelAndView mv) {
 
-		final int secondsOfRun = (int) ((Calendar.getInstance().getTimeInMillis() - applicationContext.getStartupDate())
-				/ 1000);
+		final int secondsOfRun =
+				(int) ((Calendar.getInstance().getTimeInMillis() - applicationContext.getStartupDate()) / 1000);
 
 		mv.addObject("applicationStart", new Date(applicationContext.getStartupDate()));
 		mv.addObject("runningDays", new TimeDurationFormatter(secondsOfRun).getDuration());

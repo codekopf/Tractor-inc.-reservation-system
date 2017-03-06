@@ -32,13 +32,13 @@ public class AddNewClientController {
 	private MessageSource messageSource;
 
 	/*
-	 * Provede ulozeni vozidla URI: /clients/new Method: POST
+	 * Ulozenie vozidla
+	 * URI: /clients/new
+	 * Method: POST
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public void addNewClient(@RequestBody final ClientNewForm clientNewForm) {
 
-		System.out.println("DEBUGG");
-		// TODO Validate model
 		clientManagerService.createNewClient(clientNewForm);
 
 		final String message = messageSource.getMessage(RequestParamsConstants.SAVE_NOTICE, new Object[] {},

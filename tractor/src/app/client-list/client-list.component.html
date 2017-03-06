@@ -1,11 +1,10 @@
 <div class="client-list">
   <h2 class="title">Zoznam klientov</h2>
 
-
-
-
   <div class="panel panel-default" *ngIf="showOldClientForm">
-    <div class="panel-heading">Editovať klienta</div>
+    <div class="panel-heading">Editovať klienta
+      <button type="button" class="btn btn-warning btn-xs pull-right" (click)="showOldClientForm=false">Zavrieť</button>
+    </div>
 
     <div class="panel-body">
       <form class="form" [formGroup]="oldClientForm" (ngSubmit)="editOldClient()">
@@ -34,43 +33,15 @@
       </form>
     </div>
     <div class="panel-footer">
-      <button md-button type="button" class="btn btn-warning" (click)="showOldClientForm=false">Zavrieť</button>
-      <button md-button type="submit" class="btn btn-primary" (click)="editOldClient()">Uložiť</button>
+      <button type="button" class="btn btn-warning pull-right" (click)="showOldClientForm=false">Zavrieť</button>
+      <button type="submit" class="btn btn-primary" (click)="editOldClient()">Uložiť</button>
     </div>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <div class="panel panel-default" *ngIf="showNewClientForm">
-    <div class="panel-heading">Pridať nového klienta</div>
+    <div class="panel-heading">Pridať nového klienta
+      <button type="button" class="btn btn-warning btn-xs pull-right" (click)="showNewClientForm=false">Zavrieť</button>
+    </div>
 
     <div class="panel-body">
       <form class="form" [formGroup]="newClientForm" (ngSubmit)="createNewClient()">
@@ -97,17 +68,16 @@
       </form>
     </div>
     <div class="panel-footer">
-      <button md-button type="button" class="btn btn-warning" (click)="showNewClientForm=false">Zavřít</button>
-      <button md-button type="submit" class="btn btn-primary" (click)="createNewClient()">Ulož</button>
+      <button type="button" class="btn btn-warning pull-right" (click)="showNewClientForm=false">Zavřít</button>
+      <button type="submit" class="btn btn-primary" (click)="createNewClient()">Ulož</button>
     </div>
   </div>
-
 
   <div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading">Zoznam klientov
       <button *ngIf="!showNewClientForm" type="button" class="btn btn-default btn-xs pull-right"
-              (click)="showNewClientForm=true">Přidat
+              (click)="showNewClientForm=true">Přidať
       </button>
     </div>
     <div class="panel-body">
@@ -138,7 +108,7 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Klient od</th>
-        <th>Akcie</th>
+        <th></th>
       </tr>
       </thead>
       <tr *ngFor="let client of clientList">
@@ -149,13 +119,7 @@
         <td>{{client.clientPhone}}</td>
         <td>{{client.clientEmail}}</td>
         <td>{{client.clientDateOfRegistraion  | date:'yyyy-MM-dd'}}</td>
-        <td><!--<a (click)="findClient(client.id)">Info</a><a [routerLink]="['clients']">Klienti</a>-->
-        
-        <button type="button" class="btn btn-default btn-xs pull-right"
-              (click)="findClient(client.id)" >Editovať
-        </button>
-        
-        </td>
+        <td class="text-center"><button type="button" class="btn btn-default btn-xs" (click)="findClient(client.id)" >Editovať</button></td>
       </tr>
     </table>
     <p *ngIf="!clientList || !clientList.length">Nie je tu žiadny klient</p>
