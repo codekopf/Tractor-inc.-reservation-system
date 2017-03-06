@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Andrej Buday
@@ -38,6 +40,7 @@ public class Client {
 	@Column(name = "ico")
 	private String clientICO;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "registration_date")
 	private Date clientDateOfRegistraion;
 

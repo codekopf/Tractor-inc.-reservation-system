@@ -10,9 +10,16 @@ export class ClientService {
 
   // Returns info about selected client
   // TODO
-  getClient(id: number) {
-    return this.http.get(`http://localhost:8095/car-evidence-js/client/${id}`).map(res => res.json());
-  }
+  // findClient(clientID: number) {
+  //   console.log('asd');
+  //   let id = clientID.toString();
+
+  //   let parameters = new URLSearchParams();
+  //   parameters.set('id', id);
+
+  //   return this.http.get('http://localhost:8095/car-evidence-js/client/find', {search: parameters}).map(res => res.json());
+
+  // }
 
   // Returns info about selected client
   getClients() {
@@ -48,6 +55,4 @@ export class ClientService {
   // TODO
   // deleteClient(id: number) {
   // }
-
-
 }

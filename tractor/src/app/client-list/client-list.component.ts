@@ -15,9 +15,6 @@ export class ClientListComponent implements OnInit {
   public showNewClientForm: boolean;
   public filtred: boolean;
 
-  // Custom
-  public specificClientID: number;
-
   constructor(public clientService: ClientService, private fb: FormBuilder) {
     this.getClients();
   }
@@ -31,13 +28,24 @@ export class ClientListComponent implements OnInit {
 
 
     this.newClientForm = this.fb.group({
-      type: ['RECLAIMER'],
-      vin: ['AHTBB3QD001726541'],
-      testDatum: [1487812893],
-      price: [1100000]
+      clientName: ['RECLAIMER'],
+      clientSurname: ['AHTBB3QD001726541'],
+      clientICO: ['1100000'],
+      clientEmail: ['asd@asd.com'],
+      clientPhone: ['00421905'],
     });
 
   }
+
+  // public findClient(clientID: number){
+  //   console.log('Something is going on ' + clientID + ' number');
+
+  //   this.clientService.findClient(clientID).subscribe(
+  //       clients => this.clientList = clients,
+  //       error => console.error('Error: ' + error),
+  //       () => console.log('Completed!')
+  //     );
+  // }
 
   public getClients() {
     this.filtred = false;
@@ -49,7 +57,7 @@ export class ClientListComponent implements OnInit {
       );
   }
 
-  public filterClients() {
+  public filterClient() {
     let filter: SearchParams = {
       acquiredFrom: this.filterForm.value.acquiredFrom,
       acquiredTo: this.filterForm.value.acquiredTo
@@ -69,10 +77,12 @@ export class ClientListComponent implements OnInit {
   }
 
   public createNewClient() {
+    // NEVIEM AKO SA TO ROBI
     this.addNewClient(this.newClientForm.value);
   }
 
   public addNewClient(newClient: any) {
+    console.log('Adding new client.');
     this.clientService.addClient(newClient).subscribe(
       () => this.reloadClients(),
       error => console.error('Error: ' + error),

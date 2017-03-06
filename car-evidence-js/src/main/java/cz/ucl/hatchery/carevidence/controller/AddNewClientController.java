@@ -22,7 +22,7 @@ import cz.ucl.hatchery.carevidence.web.RequestParamsConstants;
 @RequestMapping(value = AddNewClientController.BASE_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AddNewClientController {
 
-	public static final String BASE_URL = CommonConstants.SLASH + "client/new";
+	public static final String BASE_URL = CommonConstants.SLASH + "clients/new";
 	public final static String FORM_ATTRIBUTE_NAME = "clientNewForm";
 
 	@Autowired
@@ -32,11 +32,12 @@ public class AddNewClientController {
 	private MessageSource messageSource;
 
 	/*
-	 * Provede ulozeni vozidla URI: /cars/new Method: POST
+	 * Provede ulozeni vozidla URI: /clients/new Method: POST
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public void addNewClient(@RequestBody final ClientNewForm clientNewForm) {
 
+		System.out.println("DEBUGG");
 		// TODO Validate model
 		clientManagerService.createNewClient(clientNewForm);
 

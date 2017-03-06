@@ -1,8 +1,17 @@
+<md-toolbar>
+  <button md-button [routerLink]="['']">Vozový park</button>
+  <button md-button [routerLink]="['clients']">Klienti</button>
+  <!--<button md-button [routerLink]="['stk']">STK</button>-->
+  <!--<button md-button [routerLink]="['lendings']">Pôžičky</button>-->
+  <!--<button md-button [routerLink]="['about']">O půjčovně</button>-->
+</md-toolbar>
 
+<main>
+  <router-outlet></router-outlet>
+</main>
 
-<header>
+<!--<header>
   <h1>{{title}}</h1>
-
   <nav>
     <a [routerLink]="['']">Traktory</a>
     <a [routerLink]="['stk']">STK</a>
@@ -10,12 +19,4 @@
     <a [routerLink]="['lendings']">Pôžičky</a>
     <a [routerLink]="['about']">O půjčovně</a>
   </nav>
-
-
-</header>
-
-
-<main>
-  <router-outlet></router-outlet>
-</main>
-
+</header>-->

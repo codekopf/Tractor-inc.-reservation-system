@@ -1,0 +1,28 @@
+<div>
+    <!-- Table -->
+    <table class="table table-striped" *ngIf="clientInfo && clientList.length">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Meno</th>
+        <th>Priezvisko</th>
+        <th>ICO</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Date of registration</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let client of clientList">
+        <td>{{client.id}}</td>
+        <td>{{client.clientName}}</td>
+        <td>{{client.clientSurname}}</td>
+        <td>{{client.clientICO}}</td>
+        <td>{{client.clientPhone}}</td>
+        <td>{{client.clientEmail}}</td>
+        <td>{{client.clientDateOfRegistraion}}</td>
+      </tr>
+    </table>
+    <p *ngIf="!clientList || !clientList.length">Není tu žádný klient</p>
+
+
+</div>

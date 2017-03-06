@@ -1,26 +1,103 @@
 <div class="client-list">
-  <h2>Seznam klientov</h2>
+  <h2 class="title">Seznam klientov</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="panel panel-default" *ngIf="showEditClientForm">
+    <div class="panel-heading">Editovať klienta</div>
+
+    <div class="panel-body">
+      <form class="form" [formGroup]="oldClientForm" (ngSubmit)="editOldClient()">
+        <div class="form-group">
+          <label for="type">Name</label>
+          <input type="text" class="form-control" formControlName="clientName" id="name">
+        </div>
+        <div class="form-group">
+          <label for="vin">Surname</label>
+          <input type="text" class="form-control" formControlName="clientSurname" id="surname">
+        </div>
+        <div class="form-group">
+          <label for="testDatum">ICO</label>
+          <input type="text" class="form-control" formControlName="clientICO" id="ICO">
+        </div>
+        <div class="form-group">
+          <label for="price">Email</label>
+          <input type="text" class="form-control" formControlName="clientEmail" id="email">
+        </div>
+        <div class="form-group">
+          <label for="price">Phone</label>
+          <input type="text" class="form-control" formControlName="clientPhone" id="phone">
+        </div>
+      </form>
+    </div>
+    <div class="panel-footer">
+      <button md-button type="button" class="btn btn-warning" (click)="showOldClientForm=false">Zavřít</button>
+      <button md-button type="submit" class="btn btn-primary" (click)="editOldClient()">Ulož</button>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <div class="panel panel-default" *ngIf="showNewClientForm">
-    <div class="panel-heading">Přidání nového clienta</div>
+    <div class="panel-heading">Pridať nového klienta</div>
 
     <div class="panel-body">
       <form class="form" [formGroup]="newClientForm" (ngSubmit)="createNewClient()">
         <div class="form-group">
-          <label for="type">Typ</label>
-          <input type="text" class="form-control" formControlName="type" id="type">
+          <label for="type">Name</label>
+          <input type="text" class="form-control" formControlName="clientName" id="name">
         </div>
         <div class="form-group">
-          <label for="vin">VIN</label>
-          <input type="text" class="form-control" formControlName="vin" id="vin">
+          <label for="vin">Surname</label>
+          <input type="text" class="form-control" formControlName="clientSurname" id="surname">
         </div>
         <div class="form-group">
-          <label for="testDatum">Datum</label>
-          <input type="text" class="form-control" formControlName="testDatum" id="testDatum">
+          <label for="testDatum">ICO</label>
+          <input type="text" class="form-control" formControlName="clientICO" id="ICO">
         </div>
         <div class="form-group">
-          <label for="price">Cena</label>
-          <input type="text" class="form-control" formControlName="price" id="price">
+          <label for="price">Email</label>
+          <input type="text" class="form-control" formControlName="clientEmail" id="email">
+        </div>
+        <div class="form-group">
+          <label for="price">Phone</label>
+          <input type="text" class="form-control" formControlName="clientPhone" id="phone">
         </div>
       </form>
     </div>
@@ -33,7 +110,7 @@
 
   <div class="panel panel-default">
     <!-- Default panel contents -->
-    <div class="panel-heading">Seznam vozidel
+    <div class="panel-heading">Seznam klientov
       <button *ngIf="!showNewClientForm" type="button" class="btn btn-default btn-xs pull-right"
               (click)="showNewClientForm=true">Přidat
       </button>
@@ -62,8 +139,11 @@
         <th>ID</th>
         <th>Meno</th>
         <th>Priezvisko</th>
-        <th>ICO</th>
+        <th>IČO</th>
         <th>Phone</th>
+        <th>Email</th>
+        <th>Klient od</th>
+        <th>Akcie</th>
       </tr>
       </thead>
       <tr *ngFor="let client of clientList">
@@ -72,6 +152,15 @@
         <td>{{client.clientSurname}}</td>
         <td>{{client.clientICO}}</td>
         <td>{{client.clientPhone}}</td>
+        <td>{{client.clientEmail}}</td>
+        <td>{{client.clientDateOfRegistraion  | date:'yyyy MM dd'}}</td>
+        <td><!--<a (click)="findClient(client.id)">Info</a><a [routerLink]="['clients']">Klienti</a>-->
+        
+        <button *ngIf="!showOldClientForm" type="button" class="btn btn-default btn-xs pull-right"
+              (click)="showNewClientForm=true">Editovať
+        </button>
+        
+        </td>
       </tr>
     </table>
     <p *ngIf="!clientList || !clientList.length">Není tu žádný klient</p>

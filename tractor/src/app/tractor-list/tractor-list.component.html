@@ -1,5 +1,5 @@
 <div class="tractor-list">
-  <h2>Seznam traktorů (vozidel)</h2>
+  <h2 class="title">Zoznam vozidel</h2>
 
   <div class="panel panel-default" *ngIf="showNewCarForm">
     <div class="panel-heading">Přidání nového vozidla</div>
@@ -25,15 +25,15 @@
       </form>
     </div>
     <div class="panel-footer">
-      <button md-button type="button" class="btn btn-warning" (click)="showNewCarForm=false">Zavřít</button>
-      <button md-button type="submit" class="btn btn-primary" (click)="createNewCar()">Ulož</button>
+      <button type="button" class="btn btn-warning" (click)="showNewCarForm=false">Zavřít</button>
+      <button type="submit" class="btn btn-primary" (click)="createNewCar()">Ulož</button>
     </div>
   </div>
 
 
   <div class="panel panel-default">
     <!-- Default panel contents -->
-    <div class="panel-heading">Seznam vozidel
+    <div class="panel-heading">Filtrovať zoznam vozidiel
       <button *ngIf="!showNewCarForm" type="button" class="btn btn-default btn-xs pull-right"
               (click)="showNewCarForm=true">Přidat
       </button>
@@ -59,10 +59,10 @@
     <table class="table table-striped" *ngIf="tractorList && tractorList.length">
       <thead>
       <tr>
-        <th>id</th>
-        <th>type</th>
-        <th>vin</th>
-        <th>state</th>
+        <th>ID</th>
+        <th>Typ</th>
+        <th>VIN</th>
+        <th>Stav</th>
       </tr>
       </thead>
       <tr *ngFor="let tractor of tractorList">
