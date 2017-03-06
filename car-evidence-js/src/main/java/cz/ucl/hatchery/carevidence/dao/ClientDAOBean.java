@@ -23,12 +23,12 @@ public class ClientDAOBean extends GenericHibernateDAO<Client, Long> implements 
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Client> findByFilter(final ClientFilter filter) {
-		final Query query = createQueryFromCarFilter(filter);
+		final Query query = createQueryFromClientFilter(filter);
 
 		return query.list();
 	}
 
-	private Query createQueryFromCarFilter(final ClientFilter filter) {
+	private Query createQueryFromClientFilter(final ClientFilter filter) {
 		final QueryBuilder builder = new QueryBuilder(getSession(), "SELECT c FROM Client c WHERE 1 = 1");
 		System.out.println("HALOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 		builder.appendIfNotNull("AND c.id = :id", "id", filter.getId());

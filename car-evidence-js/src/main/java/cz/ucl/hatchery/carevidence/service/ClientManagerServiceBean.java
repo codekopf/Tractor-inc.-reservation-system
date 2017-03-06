@@ -14,6 +14,7 @@ import cz.ucl.hatchery.carevidence.entity.Client;
 import cz.ucl.hatchery.carevidence.model.ClientDTO;
 import cz.ucl.hatchery.carevidence.model.ClientFilter;
 import cz.ucl.hatchery.carevidence.model.ClientNewForm;
+import cz.ucl.hatchery.carevidence.model.ClientOldForm;
 import cz.ucl.hatchery.carevidence.util.CoreDateUtil;
 import cz.ucl.hatchery.carevidence.util.DTOConverter;
 
@@ -39,12 +40,36 @@ public class ClientManagerServiceBean implements ClientManagerService {
 		save(client);
 	}
 
+	@Override
+	public void saveOrUpdate(final ClientOldForm oldClientForm) {
+
+		final Long oldClientID = oldClientForm.getId();
+		final Client client = clientDAO.findById(oldClientForm.getId());
+
+		client.setClientName(oldClientForm.getClientName());
+		client.setClientSurname(oldClientForm.getClientSurname());
+		client.setClientICO(oldClientForm.getClientICO());
+		client.setClientEmail(oldClientForm.getClientEmail());
+		client.setClientPhone(oldClientForm.getClientPhone());
+
+		save(client);
+
+		// final Client client = createGeneralClient();
+		//
+		// // set parametrs from dto
+		// setFieldFromDto(clientNewForm, client);
+		//
+		// save(client);
+	}
+
 	/**
-	 * @param carNewForm
-	 * @param car
+	 * @param clientNewForm
+	 * @param client
 	 */
 	private void setFieldFromDto(final ClientNewForm clientNewForm, final Client client) {
-		// TODO - NOTE : NONONO client.setId(carNewForm.getId());
+		// TODO - NOTE : NONONO
+		// client.setId(clientNewForm.getClientId());
+		// uvidime
 		client.setClientName(clientNewForm.getClientName());
 		client.setClientSurname(clientNewForm.getClientSurname());
 		client.setClientICO(clientNewForm.getClientICO());
@@ -52,11 +77,10 @@ public class ClientManagerServiceBean implements ClientManagerService {
 		// TODO - NOTE : USED IN DEFAULT LOAD
 		// client.setClientDateOfRegistraion(carNewForm.getClientDateOfRegistraion());
 		client.setClientPhone(clientNewForm.getClientPhone());
-
 	}
 
 	/**
-	 * @param car
+	 * @param client
 	 */
 	private void save(final Client client) {
 		clientDAO.save(client);
@@ -86,5 +110,26 @@ public class ClientManagerServiceBean implements ClientManagerService {
 
 		return DTOConverter.convertClient(clientDAO.findByFilter(filter));
 	}
+
+	/**
+	 * @param car
+	 */
+	// @Override
+	// private void update(final ClientFilter filter) {
+	//
+	// final List<ClientDTO> ShouldBeOne = findClientByFilter(filter);
+	//
+	// if (ShouldBeOne.size() > 1) {
+	// System.out.println("ERROR");
+	// } else {
+	// System.out.println("SUCCESSS");
+	// }
+	//
+	// // set parametrs from dto
+	// setFieldFromDto(clientNewForm, client);
+	//
+	// save(client);
+	//
+	// }
 
 }

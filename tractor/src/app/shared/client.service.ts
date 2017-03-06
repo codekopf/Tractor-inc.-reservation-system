@@ -35,6 +35,14 @@ export class ClientService {
     return this.http.get('http://localhost:8095/car-evidence-js/clients/find', {search: parameters}).map(res => res.json());
   }
 
+
+  findClient(params: ClientSearchParams) {
+    let parameters = new URLSearchParams();
+    parameters.set('id', params.id);
+
+    return this.http.get('http://localhost:8095/car-evidence-js/clients/find', {search: parameters}).map(res => res.json());
+  }
+
   // Create new client
   addClient(client: any) {
     let headers = new Headers({ 'Content-Type': 'application/json' , 'Accept': 'application/json', });
@@ -42,6 +50,21 @@ export class ClientService {
 
     return this.http.post(
       'http://localhost:8095/car-evidence-js/clients/new',
+      JSON.stringify(client),
+      options);
+  }
+
+
+  // Edit old client
+  editClient(client: any) {
+    let headers = new Headers({ 'Content-Type': 'application/json' , 'Accept': 'application/json', });
+    let options = new RequestOptions({ headers: headers });
+
+    // TODO OOOOO
+    console.log("ZOBRAZI SA TOTO?");
+    console.log(client);
+    return this.http.post(
+      'http://localhost:8095/car-evidence-js/clients/update',
       JSON.stringify(client),
       options);
   }

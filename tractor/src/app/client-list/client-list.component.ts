@@ -15,6 +15,12 @@ export class ClientListComponent implements OnInit {
   public showNewClientForm: boolean;
   public filtred: boolean;
 
+  // CUSTOM PROPERTIES
+  public showOldClientForm: boolean;
+  public oldClientForm: FormGroup;
+  public oldClient: any;
+  public client: any;
+
   constructor(public clientService: ClientService, private fb: FormBuilder) {
     this.getClients();
   }
@@ -35,6 +41,7 @@ export class ClientListComponent implements OnInit {
       clientPhone: ['00421905'],
     });
 
+    this.showOldClientForm = false;
   }
 
   // public findClient(clientID: number){
@@ -89,4 +96,51 @@ export class ClientListComponent implements OnInit {
       () => console.log('Completed!')
     );
   }
+
+
+  // CUSTOM FUNCTION
+  public findClient(id: string) {
+    let filter: ClientSearchParams = {
+      id: id
+    };
+
+    this.clientService.findClient(filter).subscribe(
+      client => {
+        this.client = client;
+        // if (this.client == null) {
+        //   console.log("hmmmm - sakra");
+        // } else {
+        //   console.log(this.client);
+        //   for (let i in client[0]) {
+        //     console.log(i);
+        //     console.log(i.clientICO);
+        //   }
+        // }
+        this.oldClientForm = this.fb.group({
+          id: client[0].id,
+          clientName: client[0].clientName,
+          clientSurname: client[0].clientSurname,
+          clientICO: client[0].clientICO,
+          clientEmail: client[0].clientEmail,
+          clientPhone: client[0].clientPhone,
+          clientDateOfRegistraion: client[0].clientDateOfRegistraion
+        });
+        this.showOldClientForm = true;
+      },
+      error => console.error('Error: ' + error),
+      () => console.log('Completed!')
+    );
+  }
+
+  public editOldClient() {
+    console.log('Editing old client.');
+    this.oldClient = this.oldClientForm.value;
+     console.log(this.oldClient);
+    this.clientService.editClient(this.oldClient).subscribe(
+      () => this.reloadClients(),
+      error => console.error('Error: ' + error),
+      () => console.log('Completed!')
+    );
+  }
+
 }

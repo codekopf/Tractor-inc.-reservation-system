@@ -13,12 +13,14 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import cz.ucl.hatchery.carevidence.model.ClientDTO;
 import cz.ucl.hatchery.carevidence.model.ClientFilter;
+import cz.ucl.hatchery.carevidence.model.ClientOldForm;
 import cz.ucl.hatchery.carevidence.service.ClientManagerService;
 import cz.ucl.hatchery.carevidence.web.CommonConstants;
 
@@ -61,6 +63,12 @@ public class ClientListController {
 		final List<ClientDTO> result = clientService.findClientByFilter(clientFilter);
 
 		return result.toArray(new ClientDTO[result.size()]);
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public void updateOldClient(@RequestBody final ClientOldForm oldClientForm) {
+		clientService.saveOrUpdate(oldClientForm);
+		return;
 	}
 
 	@InitBinder
