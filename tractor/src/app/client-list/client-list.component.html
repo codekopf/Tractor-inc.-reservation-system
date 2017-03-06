@@ -11,11 +11,6 @@
 
 
 
-
-
-
-
-
   <div class="panel panel-default" *ngIf="showEditClientForm">
     <div class="panel-heading">Editovať klienta</div>
 
@@ -44,10 +39,15 @@
       </form>
     </div>
     <div class="panel-footer">
-      <button md-button type="button" class="btn btn-warning" (click)="showOldClientForm=false">Zavřít</button>
-      <button md-button type="submit" class="btn btn-primary" (click)="editOldClient()">Ulož</button>
+      <button md-button type="button" class="btn btn-warning" (click)="showOldClientForm=false">Zavrieť</button>
+      <button md-button type="submit" class="btn btn-primary" (click)="editOldClient()">Uložiť</button>
     </div>
   </div>
+
+
+
+
+
 
 
 
@@ -153,11 +153,11 @@
         <td>{{client.clientICO}}</td>
         <td>{{client.clientPhone}}</td>
         <td>{{client.clientEmail}}</td>
-        <td>{{client.clientDateOfRegistraion  | date:'yyyy MM dd'}}</td>
+        <td>{{client.clientDateOfRegistraion  | date:'yyyy-MM-dd'}}</td>
         <td><!--<a (click)="findClient(client.id)">Info</a><a [routerLink]="['clients']">Klienti</a>-->
         
-        <button *ngIf="!showOldClientForm" type="button" class="btn btn-default btn-xs pull-right"
-              (click)="showNewClientForm=true">Editovať
+        <button type="button" class="btn btn-default btn-xs pull-right"
+              (click)="showOldClientForm=true" >Editovať
         </button>
         
         </td>

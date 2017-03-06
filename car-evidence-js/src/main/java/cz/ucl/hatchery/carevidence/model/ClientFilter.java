@@ -16,6 +16,8 @@ public class ClientFilter {
 	private String surname;
 	private String ico;
 	private Date clientDateOfRegistraion;
+	private Date acquiredFrom;
+	private Date acquiredTo;
 	private String email;
 	private String ceilPhone;
 
@@ -29,13 +31,16 @@ public class ClientFilter {
 	 * @param ceilPhone
 	 */
 	public ClientFilter(final Long id, final String name, final String surname, final String ico,
-			final Date clientDateOfRegistraion, final String email, final String ceilPhone) {
+			final Date clientDateOfRegistraion, final Date acquiredFrom, final Date acquiredTo, final String email,
+			final String ceilPhone) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
 		this.ico = ico;
 		this.clientDateOfRegistraion = clientDateOfRegistraion;
+		this.acquiredFrom = acquiredFrom;
+		this.acquiredTo = acquiredTo;
 		this.email = email;
 		this.ceilPhone = ceilPhone;
 	}
@@ -144,4 +149,33 @@ public class ClientFilter {
 	public void setCeilPhone(final String ceilPhone) {
 		this.ceilPhone = ceilPhone;
 	}
+
+	/**
+	 * @param acquiredFrom the acquiredFrom to set
+	 */
+	public void setAcquiredFrom(final Date acquiredFrom) {
+		this.acquiredFrom = acquiredFrom;
+	}
+
+	/**
+	 * @param acquiredTo the acquiredTo to set
+	 */
+	public void setAcquiredTo(final Date acquiredTo) {
+		this.acquiredTo = acquiredTo;
+	}
+
+	/**
+	 * @return the acquiredFrom
+	 */
+	public Date getAcquiredFrom() {
+		return acquiredFrom;
+	}
+
+	/**
+	 * @return the acquiredTo
+	 */
+	public Date getAcquiredTo() {
+		return acquiredTo;
+	}
+
 }

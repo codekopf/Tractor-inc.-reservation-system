@@ -30,24 +30,16 @@ public class ClientDAOBean extends GenericHibernateDAO<Client, Long> implements 
 
 	private Query createQueryFromCarFilter(final ClientFilter filter) {
 		final QueryBuilder builder = new QueryBuilder(getSession(), "SELECT c FROM Client c WHERE 1 = 1");
-
+		System.out.println("HALOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 		builder.appendIfNotNull("AND c.id = :id", "id", filter.getId());
 		builder.appendIfNotNull("AND c.name = :name", "name", filter.getName());
 		builder.appendIfNotNull("AND c.surname = :surname", "surname", filter.getSurname());
 		builder.appendIfNotNull("AND c.ico = :ico", "ico", filter.getIco());
 		builder.appendIfNotNull("AND c.email = :email", "email", filter.getEmail());
 		builder.appendIfNotNull("AND c.ceilPhone = :ceilPhone", "ceilPhone", filter.getCeilPhone());
-
-		// TODO - upravit
-		// builder.appendIfNotNull("AND c.dateOfAcquisition >= :acquiredFrom", "acquiredFrom",
-		// filter.getAcquiredFrom());
-		// builder.appendIfNotNull("AND c.dateOfAcquisition <= :acquiredTo", "acquiredTo", filter.getAcquiredTo());
-		// builder.appendIfNotNull("AND c.dateOfLastTechnicalCheck >= :checkFrom", "checkFrom",
-		// filter.getLastTechnicalCheckFrom());
-		// builder.appendIfNotNull("AND c.dateOfLastTechnicalCheck <= :checkTo", "checkTo",
-		// filter.getLastTechnicalCheckTo());
-		// builder.appendIfNotNull("AND c.price >= :priceFrom", "priceFrom", filter.getPriceFrom());
-		// builder.appendIfNotNull("AND c.price <= :priceTo", "priceTo", filter.getPriceTo());
+		builder.appendIfNotNull("AND c.clientDateOfRegistraion >= :acquiredFrom", "acquiredFrom",
+				filter.getAcquiredFrom());
+		builder.appendIfNotNull("AND c.clientDateOfRegistraion <= :acquiredTo", "acquiredTo", filter.getAcquiredTo());
 
 		return builder.build();
 	}
