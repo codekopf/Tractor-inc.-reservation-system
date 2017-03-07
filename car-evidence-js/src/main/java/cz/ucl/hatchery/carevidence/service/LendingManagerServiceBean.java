@@ -103,4 +103,11 @@ public class LendingManagerServiceBean implements LendingManagerService {
 		return DTOConverter.convertLending(lendingDAO.findByFilter(filter));
 	}
 
+	/** {@inheritDoc} */
+	@Override
+	public List<LendingDTO> findAvailableVehicleByFilter(final LendingFilter filter) {
+
+		return DTOConverter.convertLending(lendingDAO.findAvailableVehicleByFilter(filter));
+	}
+
 }

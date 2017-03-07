@@ -24,6 +24,16 @@ export class LendingService {
   }
 
   // Returns all lendings
+  filterAvailableVehicles(params: LendingSearchParams) {
+    let parameters = new URLSearchParams();
+    parameters.set('type', params.type);
+    parameters.set('dateFrom', params.dateFrom);
+    parameters.set('dateTo', params.dateTo);
+
+    return this.http.get('http://localhost:8095/car-evidence-js/lendings/vehicles', {search: parameters}).map(res => res.json());
+  }
+
+  // Returns all lendings
   findLendings(params: LendingSearchParams) {
     let parameters = new URLSearchParams();
     parameters.set('dateFrom', params.dateFrom);

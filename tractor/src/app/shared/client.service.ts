@@ -61,7 +61,7 @@ export class ClientService {
     let options = new RequestOptions({ headers: headers });
 
     // TODO OOOOO
-    console.log("ZOBRAZI SA TOTO?");
+    console.log('ZOBRAZI SA TOTO?');
     console.log(client);
     return this.http.post(
       'http://localhost:8095/car-evidence-js/clients/update',

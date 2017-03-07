@@ -22,6 +22,8 @@ public interface LendingManagerService {
 
 	public List<LendingDTO> findLendingByFilter(LendingFilter filter);
 
+	public List<LendingDTO> findAvailableVehicleByFilter(LendingFilter filter);
+
 	public void saveOrUpdate(LendingOldForm oldLendingForm);
 
 }

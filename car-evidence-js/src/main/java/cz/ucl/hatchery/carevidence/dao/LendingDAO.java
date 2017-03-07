@@ -16,4 +16,6 @@ public interface LendingDAO extends GenericDAO<Lending, Long> {
 
 	public List<Lending> findByFilter(LendingFilter filter);
 
+	public List<Lending> findAvailableVehicleByFilter(LendingFilter filter);
+
 }

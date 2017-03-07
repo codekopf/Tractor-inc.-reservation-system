@@ -5,11 +5,11 @@ import { ClientService } from '../shared/client.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'my-lending-list',
-  templateUrl: './lending-list.component.html',
-  styleUrls: ['./lending-list.component.scss'],
+  templateUrl: './new-lending.component.html',
+  styleUrls: ['./new-lending.component.scss'],
   providers: [LendingService, TractorService, ClientService]
 })
-export class LendingListComponent implements OnInit {
+export class NewLendingListComponent implements OnInit {
 
   // Default
   public lendingList: any;
@@ -20,8 +20,7 @@ export class LendingListComponent implements OnInit {
 
   // Create new entry
   public newLendingForm: FormGroup;
-  public showNewLendingForm: boolean;
-  public vehicleList: any;
+  public showNewLendingForm: boolean = true;
   public clientList: any;
 
   // Editing existing entry
@@ -38,51 +37,21 @@ export class LendingListComponent implements OnInit {
     // this.getLendings();
 
     // Establishing lists with clients and vehicles for creating new entry
-    this.getVehicles();
-    this.getClients();
+    // this.getClients();
   }
 
   ngOnInit() {
     console.log('OnInit - Setting lending list');
 
-    this.filterForm = this.fb.group({
+    this.oldLendingForm = this.fb.group({
       dateFrom: ['2015-10-10'],
-      dateTo: ['2018-10-10']
+      dateTo: ['2018-10-10'],
+      type: 'test',
+      vin: 'test'
     });
 
-    this.newLendingForm = this.fb.group({
-      car: ['RECLAIMER'],
-      client: [''],
-      dateFrom: ['2012-10-10'],
-      dateTo: ['2012-12-12'],
-      lattitude: ['3'],
-      longitude: ['2'],
-      price: ['0']
-    });
-
-    this.showOldLendingForm = false;
   }
 
-  // Get all lendings entries
-  public getLendings() {
-    this.filtred = false;
-    this.lendingList = this.lendingService.getLendings()
-      .subscribe(
-        lendings => this.lendingList = lendings,
-        error => console.error('Error: ' + error),
-        () => console.log('Completed!')
-      );
-  }
-
-  // Get all vehicles entries
-  public getVehicles() {
-    this.tractorService.getCars()
-      .subscribe(
-        vehicle => this.vehicleList = vehicle,
-        error => console.error('Error: ' + error),
-        () => console.log('getVehicles() completed!')
-      );
-  }
 
   // Get all vehicles entries
   public getClients() {
@@ -94,28 +63,7 @@ export class LendingListComponent implements OnInit {
       );
   }
 
-  // Return filter lendings
-  public filterLending() {
-    let filter: LendingSearchParams = {
-      dateFrom: this.filterForm.value.dateFrom,
-      dateTo: this.filterForm.value.dateTo,
-      type: ''
-    };
-    this.filtred = true;
-    this.lendingService.findLendings(filter).subscribe(
-      lendings => this.lendingList = lendings,
-      error => console.error('Error: ' + error),
-      () => console.log( this.lendingList + 'filterLending() completed!')
-    );
-  }
-
-
-
-
-
-
-
-
+  
   // searchAvailableVehicle
   public searchAvailableVehicle() {
     let filter: LendingSearchParams = {
@@ -132,42 +80,16 @@ export class LendingListComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //
-  public reloadLendings() {
-    this.getLendings();
-    this.showNewLendingForm = false;
-  }
-
-  //
-  public reloadLendingOverOldLendingForm() {
-    this.getLendings();
-    this.showOldLendingForm = false;
-  }
-
   //
   public createNewLending() {
     this.addNewLending(this.newLendingForm.value);
   }
 
-  //
+  // 
   public addNewLending(newLending: any) {
     console.log('Adding new lending.');
     this.lendingService.addLending(newLending).subscribe(
-      () => this.reloadLendings(),
+      //todo
       error => console.error('Error: ' + error),
       () => console.log('addNewLending() completed!')
     );
@@ -210,6 +132,6 @@ export class LendingListComponent implements OnInit {
     );
   }
 
-  //
+  // 
   public reloadLendingsOverOldLendingForm() {}
 }

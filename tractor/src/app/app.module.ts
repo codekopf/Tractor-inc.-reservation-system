@@ -1,5 +1,3 @@
-
-
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from '@angular/http';
@@ -10,11 +8,10 @@ import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { TractorListComponent } from './tractor-list/tractor-list.component';
-// INSERT COMPONENTS HERE
+// Custom components
 import { ClientListComponent } from './client-list/client-list.component';
 import { LendingListComponent } from './lending-list/lending-list.component';
-// import { RepairListComponent } from './repairs/repair-list.component';
-// import { STKListComponent } from './stks/stk-list.component';
+import { NewLendingListComponent } from './new-lending/new-lending.component';
 
 import { ApiService } from './shared';
 import { routing } from './app.routing';
@@ -23,8 +20,6 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import { TractorService } from './shared/tractor.service';
 import { ClientService } from './shared/client.service';
 import { LendingService } from './shared/lending.service';
-// import { RepairService } from './shared/tractor.service';
-// import { STKService } from './shared/tractor.service';
 
 @NgModule({
   imports: [
@@ -40,19 +35,16 @@ import { LendingService } from './shared/lending.service';
     AppComponent,
     TractorListComponent,
     AboutComponent,
-    // INSERT COMPONENTS HERE
+    // INSERT CUSTOM COMPONENTS HERE
     ClientListComponent,
-    LendingListComponent
-    // RepairsListComponent,
-    // STKListComponent
+    LendingListComponent,
+    NewLendingListComponent
   ],
   providers: [
     ApiService,
     TractorService,
     ClientService,
     LendingService
-    // RepairService,
-    // STKService
   ],
   bootstrap: [AppComponent]
 })

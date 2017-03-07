@@ -24,6 +24,8 @@ public class LendingFilter {
 	private Integer lattitude;
 	private Integer longitude;
 
+	private String type;
+
 	/**
 	 * @param id
 	 * @param car
@@ -35,7 +37,7 @@ public class LendingFilter {
 	 * @param longitude
 	 */
 	public LendingFilter(final Long id, final Car car, final Date dateFrom, final Date dateTo, final BigDecimal price,
-			final Client carClient, final int lattitude, final int longitude) {
+			final Client carClient, final int lattitude, final int longitude, final String type) {
 		super();
 		this.id = id;
 		this.car = car;
@@ -45,6 +47,21 @@ public class LendingFilter {
 		this.carClient = carClient;
 		this.lattitude = lattitude;
 		this.longitude = longitude;
+		this.type = type;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(final String type) {
+		this.type = type;
 	}
 
 	/**

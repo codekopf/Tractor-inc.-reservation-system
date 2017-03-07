@@ -1,0 +1,59 @@
+<div class="lending-list">
+
+  <h2 class="title">Nová pôžička</h2>
+
+  <!--
+  *
+  * Editacia klienta po novom
+  *  
+  -->
+  <div class="panel panel-default">
+
+    <div class="panel-body">
+      <form class="form" [formGroup]="oldLendingForm" (ngSubmit)="createNewLending()">
+        <div class="form-group">
+          <label for="typ">Typ</label>
+          <select formControlName="type" >
+            <option value="BULLDOZER">BULLDOZER</option>
+            <option value="TRACTOR">TRACTOR</option>
+            <option value="DREDGING">DREDGING</option>
+            <option value="EXCAVATOR">EXCAVATOR</option>
+            <option value="RECLAIMER">RECLAIMER</option>
+            <option value="SKIDDER">SKIDDER</option>
+            <option value="LOADER">LOADER</option>
+            <option value="FORKLIFT">FORKLIFT</option>
+            <option value="DUMP_TRUCK">DUMP_TRUCK</option>
+            <option value="ROAD_ROLLER">ROAD_ROLLER</option>
+            <option value="TRACKED_LOADER">TRACKED_LOADER</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="od">Od</label>
+          <input type="date" class="form-control" formControlName="dateFrom" id="od">
+        </div>
+        <div class="form-group">
+          <label for="do">Do</label>
+          <input type="date" class="form-control" formControlName="dateTo" id="do">
+        </div>
+
+        <div class="form-group">
+          <button type="button" class="btn btn-primary" (click)="searchAvailableVehicle()">availableVehicleList</button>
+          <div *ngIf="availableVehicleList">
+
+          <label for="vin">VIN</label>
+          <select id="vin" formControlName="vin">
+            <option *ngFor="let vinItem of availableVehicleList" [value]="vinItem.id">{{vinItem?.vin}}</option>
+          </select>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="panel-footer">
+      <button type="submit" class="btn btn-primary" (click)="createNewLending()">Odoslať</button>
+    </div>
+
+  </div><!-- Koniec editacie klienta -->
+
+ 
+</div>

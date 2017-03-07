@@ -30,6 +30,13 @@ public class LendingDAOBean extends GenericHibernateDAO<Lending, Long> implement
 		return query.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Lending> findAvailableVehicleByFilter(final LendingFilter filter) {
+		final Query query = createQueryFromLendingFilterForAvailableVehicles(filter);
+
+		return query.list();
+	}
+
 	private Query createQueryFromLendingFilter(final LendingFilter filter) {
 		final QueryBuilder builder = new QueryBuilder(getSession(), "SELECT c FROM Lending c WHERE 1 = 1");
 		System.out.println("HALOOOOOOOOOOOOOOOOOOOOOOOOOOO");
@@ -43,6 +50,37 @@ public class LendingDAOBean extends GenericHibernateDAO<Lending, Long> implement
 		builder.appendIfNotNull("AND c.longitude = :longitude", "longitude", filter.getLongitude());
 
 		return builder.build();
+	}
+
+	private Query createQueryFromLendingFilterForAvailableVehicles(final LendingFilter filter) {
+
+		final QueryBuilder builder =
+				new QueryBuilder(getSession(), "SELECT C.cars_type, C.vin FROM car AS C WHERE 1 = 1");
+
+		System.out.println("HALOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+
+		builder.appendIfNotNull("C.cars_type = :type", "type", filter.getType());
+		builder.appendIfNotNull(
+				"AND NOT EXISTS (SELECT * FROM lending AS L WHERE C.id = L.car AND ( (L.date_from BETWEEN :dateFrom",
+				"dateFrom", filter.getDateFrom());
+		builder.appendIfNotNull("AND :dateTo", "dateTo", filter.getDateTo());
+		builder.appendIfNotNull(") OR (L.date_to BETWEEN AND :dateFrom", "dateFrom", filter.getDateFrom());
+		builder.appendIfNotNull("AND :dateTo", "dateTo", filter.getDateTo());
+		builder.appendIfNotNull(" ) OR (L.date_from <= :dateFrom", "dateFrom", filter.getDateFrom());
+		builder.appendIfNotNull(" AND L.date_to >= :dateTo", "dateTo", filter.getDateTo());
+		builder.appendIfNotNull(" ) OR (L.date_from >=  :dateFrom", "dateFrom", filter.getDateFrom());
+		builder.appendIfNotNull(" AND L.date_to <=  :dateTo", "dateTo", filter.getDateTo());
+
+		return builder.build();
+
+		// SELECT C.cars_type, C.vin FROM car AS C WHERE C.cars_type='BULLDOZER' AND NOT EXISTS (
+		// SELECT * FROM lending AS L WHERE
+		// C.id = L.car AND (
+		// (L.date_from BETWEEN '2000-07-27' AND '2000-07-28' ) OR
+		// (L.date_to BETWEEN '2000-07-27' AND '2000-07-28' ) OR
+		// (L.date_from <= '2000-07-27' AND L.date_to >= '2000-07-28' ) OR
+		// (L.date_from >= '2000-07-27' AND L.date_to <= '2000-07-28' )
+		// )
 	}
 
 }
