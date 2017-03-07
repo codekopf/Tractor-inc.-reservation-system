@@ -1,55 +1,58 @@
 /**
  * 
  */
-package cz.ucl.hatchery.carevidence.entity;
+package cz.ucl.hatchery.carevidence.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+import cz.ucl.hatchery.carevidence.entity.Car;
+import cz.ucl.hatchery.carevidence.entity.Client;
 
 /**
- * @author Andrej Buday
- * @description Class handling car lending information
+ * @author User
+ *
  */
+public class LendingFilter {
 
-@Entity
-public class Lending {
-
-	@Id
-	@SequenceGenerator(name = "LENDING_ID_GENERATOR", sequenceName = "HIBERNATE_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LENDING_ID_GENERATOR")
 	private Long id;
-
-	@JoinColumn(name = "car")
-	@ManyToOne
 	private Car car;
-
-	@Column(name = "date_from")
 	private Date dateFrom;
-
-	@Column(name = "date_to")
 	private Date dateTo;
-
-	@Column(name = "price")
 	private BigDecimal price;
-
-	@JoinColumn(name = "car_client")
-	@ManyToOne
 	private Client carClient;
+	private Integer lattitude;
+	private Integer longitude;
 
-	@Column(name = "lattitude")
-	private int lattitude;
+	/**
+	 * @param id
+	 * @param car
+	 * @param dateFrom
+	 * @param dateTo
+	 * @param price
+	 * @param carClient
+	 * @param lattitude
+	 * @param longitude
+	 */
+	public LendingFilter(final Long id, final Car car, final Date dateFrom, final Date dateTo, final BigDecimal price,
+			final Client carClient, final int lattitude, final int longitude) {
+		super();
+		this.id = id;
+		this.car = car;
+		this.dateFrom = dateFrom;
+		this.dateTo = dateTo;
+		this.price = price;
+		this.carClient = carClient;
+		this.lattitude = lattitude;
+		this.longitude = longitude;
+	}
 
-	@Column(name = "longitude")
-	private int longitude;
+	/**
+	 * 
+	 */
+	public LendingFilter() {
+		super();
+	}
 
 	/**
 	 * @return the id
@@ -138,28 +141,28 @@ public class Lending {
 	/**
 	 * @return the lattitude
 	 */
-	public int getLattitude() {
+	public Integer getLattitude() {
 		return lattitude;
 	}
 
 	/**
 	 * @param lattitude the lattitude to set
 	 */
-	public void setLattitude(final int lattitude) {
+	public void setLattitude(final Integer lattitude) {
 		this.lattitude = lattitude;
 	}
 
 	/**
 	 * @return the longitude
 	 */
-	public int getLongitude() {
+	public Integer getLongitude() {
 		return longitude;
 	}
 
 	/**
 	 * @param longitude the longitude to set
 	 */
-	public void setLongitude(final int longitude) {
+	public void setLongitude(final Integer longitude) {
 		this.longitude = longitude;
 	}
 

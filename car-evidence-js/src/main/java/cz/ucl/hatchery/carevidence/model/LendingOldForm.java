@@ -1,54 +1,27 @@
 /**
  * 
  */
-package cz.ucl.hatchery.carevidence.entity;
+package cz.ucl.hatchery.carevidence.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+import cz.ucl.hatchery.carevidence.entity.Car;
+import cz.ucl.hatchery.carevidence.entity.Client;
 
 /**
- * @author Andrej Buday
- * @description Class handling car lending information
+ * @author User
+ *
  */
+public class LendingOldForm {
 
-@Entity
-public class Lending {
-
-	@Id
-	@SequenceGenerator(name = "LENDING_ID_GENERATOR", sequenceName = "HIBERNATE_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LENDING_ID_GENERATOR")
 	private Long id;
-
-	@JoinColumn(name = "car")
-	@ManyToOne
 	private Car car;
-
-	@Column(name = "date_from")
 	private Date dateFrom;
-
-	@Column(name = "date_to")
 	private Date dateTo;
-
-	@Column(name = "price")
 	private BigDecimal price;
-
-	@JoinColumn(name = "car_client")
-	@ManyToOne
 	private Client carClient;
-
-	@Column(name = "lattitude")
 	private int lattitude;
-
-	@Column(name = "longitude")
 	private int longitude;
 
 	/**

@@ -48,7 +48,7 @@ public class Client {
 	@Column(name = "ceil_phone")
 	private String clientPhone;
 
-	@OneToMany(mappedBy = "lendedCarClientID")
+	@OneToMany(mappedBy = "carClient")
 	private Set<Lending> lendings;
 
 	/**

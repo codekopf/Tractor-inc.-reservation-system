@@ -8,8 +8,10 @@ import java.util.List;
 
 import cz.ucl.hatchery.carevidence.entity.Car;
 import cz.ucl.hatchery.carevidence.entity.Client;
+import cz.ucl.hatchery.carevidence.entity.Lending;
 import cz.ucl.hatchery.carevidence.model.CarDTO;
 import cz.ucl.hatchery.carevidence.model.ClientDTO;
+import cz.ucl.hatchery.carevidence.model.LendingDTO;
 
 /**
  * @author User
@@ -60,6 +62,31 @@ public class DTOConverter {
 
 		for (final Client client : clients) {
 			dtos.add(convertClient(client));
+		}
+
+		return dtos;
+	}
+
+	public static LendingDTO convertLending(final Lending lending) {
+		final LendingDTO dto = new LendingDTO();
+
+		dto.setId(lending.getId());
+		dto.setCar(lending.getCar());
+		dto.setDateFrom(lending.getDateFrom());
+		dto.setDateTo(lending.getDateTo());
+		dto.setPrice(lending.getPrice());
+		dto.setCarClient(lending.getCarClient());
+		dto.setLattitude(lending.getLattitude());
+		dto.setLongitude(lending.getLongitude());
+
+		return dto;
+	}
+
+	public static List<LendingDTO> convertLending(final List<Lending> lendings) {
+		final List<LendingDTO> dtos = new ArrayList<LendingDTO>();
+
+		for (final Lending lending : lendings) {
+			dtos.add(convertLending(lending));
 		}
 
 		return dtos;

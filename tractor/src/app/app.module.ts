@@ -12,7 +12,7 @@ import { AboutComponent } from './about/about.component';
 import { TractorListComponent } from './tractor-list/tractor-list.component';
 // INSERT COMPONENTS HERE
 import { ClientListComponent } from './client-list/client-list.component';
-// import { LendingListComponent } from './lendings/lending-list.component';
+import { LendingListComponent } from './lending-list/lending-list.component';
 // import { RepairListComponent } from './repairs/repair-list.component';
 // import { STKListComponent } from './stks/stk-list.component';
 
@@ -22,6 +22,7 @@ import { routing } from './app.routing';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import { TractorService } from './shared/tractor.service';
 import { ClientService } from './shared/client.service';
+import { LendingService } from './shared/lending.service';
 // import { RepairService } from './shared/tractor.service';
 // import { STKService } from './shared/tractor.service';
 
@@ -41,15 +42,15 @@ import { ClientService } from './shared/client.service';
     AboutComponent,
     // INSERT COMPONENTS HERE
     ClientListComponent,
-    // LendingListComponent,
+    LendingListComponent
     // RepairsListComponent,
     // STKListComponent
   ],
   providers: [
     ApiService,
     TractorService,
-    ClientService
-    // LendingService,
+    ClientService,
+    LendingService
     // RepairService,
     // STKService
   ],

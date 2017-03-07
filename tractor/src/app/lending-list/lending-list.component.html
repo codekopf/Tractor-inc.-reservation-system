@@ -1,0 +1,148 @@
+<div class="lending-list">
+  <h2 class="title">Zoznam poziciek</h2>
+
+  <div class="panel panel-default" *ngIf="showOldLendingForm">
+    <div class="panel-heading">Editovať klienta
+      <button type="button" class="btn btn-warning btn-xs pull-right" (click)="showOldLendingForm=false">Zavrieť</button>
+    </div>
+
+    <div class="panel-body">
+      <form class="form" [formGroup]="oldLendingForm" (ngSubmit)="editOldLending()">
+        <div class="form-group">
+          <label for="car">Auto</label>
+          <input type="text" class="form-control" formControlName="car" id="car">
+        </div>
+        <div class="form-group">
+          <label for="od">Od</label>
+          <input type="date" class="form-control" formControlName="dateFrom" id="od">
+        </div>
+        <div class="form-group">
+          <label for="do">Do</label>
+          <input type="date" class="form-control" formControlName="dateTo" id="do">
+        </div>
+        <div class="form-group">
+          <label for="price">Cena</label>
+          <input type="text" class="form-control" formControlName="price" id="price">
+        </div>
+        <div class="form-group">
+          <label for="client">Klient</label>
+          <input type="text" class="form-control" formControlName="client" id="client">
+        </div>
+        <div class="form-group">
+          <label for="lattitude">Lattitude</label>
+          <input type="text" class="form-control" formControlName="lattitudee" id="lattitude">
+        </div>
+        <div class="form-group">
+          <label for="longitude">Longitude</label>
+          <input type="text" class="form-control" formControlName="longitude" id="longitude">
+        </div>
+        <input type="hidden" id="id" formControlName="id" value="{{id}}">
+      </form>
+    </div>
+    <div class="panel-footer">
+      <button type="button" class="btn btn-warning pull-right" (click)="showOldLendingForm=false">Zavrieť</button>
+      <button type="submit" class="btn btn-primary" (click)="editOldLending()">Uložiť</button>
+    </div>
+  </div>
+
+  <div class="panel panel-default" *ngIf="showNewLendingForm">
+    <div class="panel-heading">Pridať novu pozicku
+      <button type="button" class="btn btn-warning btn-xs pull-right" (click)="showNewLendingForm=false">Zavrieť</button>
+    </div>
+
+    <div class="panel-body">
+
+      <form class="form" [formGroup]="newLendingForm" (ngSubmit)="createNewLending()">
+        <div class="form-group">
+          <label for="car">Auto</label>
+          <input type="text" class="form-control" formControlName="car" id="car">
+        </div>
+        <div class="form-group">
+          <label for="od">Od</label>
+          <input type="date" class="form-control" formControlName="dateFrom" id="od">
+        </div>
+        <div class="form-group">
+          <label for="do">Do</label>
+          <input type="date" class="form-control" formControlName="dateTo" id="do">
+        </div>
+        <div class="form-group">
+          <label for="price">Cena</label>
+          <input type="text" class="form-control" formControlName="price" id="price">
+        </div>
+        <div class="form-group">
+          <label for="client">Klient</label>
+          <input type="text" class="form-control" formControlName="client" id="client">
+        </div>
+        <div class="form-group">
+          <label for="lattitude">Lattitude</label>
+          <input type="text" class="form-control" formControlName="lattitude" id="lattitude">
+        </div>
+        <div class="form-group">
+          <label for="longitude">Longitude</label>
+          <input type="text" class="form-control" formControlName="longitude" id="longitude">
+        </div>
+      </form>
+
+    </div>
+    <div class="panel-footer">
+      <button type="button" class="btn btn-warning pull-right" (click)="showNewLendingForm=false">Zavřít</button>
+      <button type="submit" class="btn btn-primary" (click)="createNewLending()">Ulož</button>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Zoznam poziciek
+      <button *ngIf="!showNewLendingForm" type="button" class="btn btn-default btn-xs pull-right"
+              (click)="showNewLendingForm=true">Přidať
+      </button>
+    </div>
+    <div class="panel-body">
+      <form [formGroup]="filterForm" class="lending-filter" (ngSubmit)="filterLending()" class="form-inline">
+        <div class="form-group">
+          <label for="dateFrom">Od</label>
+          <input type="text" class="form-control" formControlName="dateFrom" id="dateFrom">
+        </div>
+        <div class="form-group">
+          <label for="dateTo">Do</label>
+          <input type="text" class="form-control" formControlName="dateTo" id="dateTo">
+        </div>
+        <button type="submit" class="btn btn-default">Filtruj</button>
+        <button type="button" class="btn btn-warning" (click)="filtred && getLending()" [ngClass]="{disabled : !filtred}">
+          Zruš filtr
+        </button>
+      </form>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-striped" *ngIf="lendingList && lendingList.length">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Vozidlo</th>
+        <th>Od</th>
+        <th>Do</th>
+        <th>Long.</th>
+        <th>Lat</th>
+        <th>Cena</th>
+        <th>Klient</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tr *ngFor="let lending of lendingList">
+        <td>{{lending.id}}</td>
+        <td>{{lending.car.vin}}</td>
+        <td>{{lending.dateFrom | date:'yyyy-MM-dd'}}</td>
+        <td>{{lending.dateTo | date:'yyyy-MM-dd'}}</td>
+        <td>{{lending.longitude}}</td>
+        <td>{{lending.lattitude}}</td>
+        <td>{{lending.price}}</td>
+        <td>{{lending.carClient.clientName}}</td>
+        <td class="text-center"><button type="button" class="btn btn-default btn-xs" (click)="findLending(lending.id)" >Editovať</button></td>
+      </tr>
+    </table>
+    <p *ngIf="!lendingList || !lendingList.length">Upresniete filter pre pozicky</p>
+
+  </div>
+
+</div>

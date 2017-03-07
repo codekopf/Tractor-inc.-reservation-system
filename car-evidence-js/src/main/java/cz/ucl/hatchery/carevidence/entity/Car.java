@@ -30,7 +30,6 @@ public class Car {
 	@Id
 	@SequenceGenerator(name = "CAR_ID_GENERATOR", sequenceName = "HIBERNATE_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAR_ID_GENERATOR")
-
 	private Long id;
 
 	@Column(name = "cars_type")
@@ -51,14 +50,14 @@ public class Car {
 
 	private BigDecimal price;
 
-	@OneToMany(mappedBy = "repairCarID")
-	private Set<Repair> repairs;
+	// @OneToMany(mappedBy = "repairCarID")
+	// private Set<Repair> repairs;
 
-	@OneToMany(mappedBy = "lendedCar")
+	@OneToMany(mappedBy = "car")
 	private Set<Lending> lendings;
 
-	@OneToMany(mappedBy = "carSTKID")
-	private Set<STK> stks;
+	// @OneToMany(mappedBy = "carSTKID")
+	// private Set<STK> stks;
 
 	/**
 	 * @return the id
