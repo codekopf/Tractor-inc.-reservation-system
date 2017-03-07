@@ -1,49 +1,66 @@
 import { Component, OnInit } from '@angular/core';
 import { LendingService } from '../shared/lending.service';
+import { TractorService } from '../shared/tractor.service';
+import { ClientService } from '../shared/client.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'my-lenging-list',
   templateUrl: './lending-list.component.html',
   styleUrls: ['./lending-list.component.scss'],
-  providers: [LendingService]
+  providers: [LendingService, TractorService, ClientService]
 })
 export class LendingListComponent implements OnInit {
 
+  // Default
   public lendingList: any;
   public filterForm: FormGroup;
-  public newLendingForm: FormGroup;
-  public showNewLendingForm: boolean;
+
+  // Filtered list
   public filtred: boolean;
 
-  // CUSTOM PROPERTIES
+  // Create new entry
+  public newLendingForm: FormGroup;
+  public showNewLendingForm: boolean;
+  public vehicleList: any;
+  public clientList: any;
+
+  // Editing existing entry
   public showOldLendingForm: boolean;
   public oldLendingForm: FormGroup;
   public oldLending: any;
   public lending: any;
 
-  constructor(public lendingService: LendingService, private fb: FormBuilder) {
+  constructor(public lendingService: LendingService, public tractorService: TractorService, public clientService: ClientService, private fb: FormBuilder) {
+    // Uncomment below if you want to load all lendings on page load
     // this.getLendings();
+
+    // Establishing lists with clients and vehicles for creating new entry
+    this.getVehicles();
+    this.getClients();
   }
 
   ngOnInit() {
-    console.log('hello client list');
+    console.log('OnInit - Setting lending list');
+
     this.filterForm = this.fb.group({
-      dateFrom: ['2010-10-10'],
+      dateFrom: ['2015-10-10'],
       dateTo: ['2018-10-10']
     });
 
-
     this.newLendingForm = this.fb.group({
-      // lendingName: ['RECLAIMER'],
+      car: ['RECLAIMER'],
+      client: [''],
       dateFrom: ['2012-10-10'],
       dateTo: ['2012-12-12'],
       lattitude: ['3'],
-      longitude: ['longitude']
+      longitude: ['2'],
+      price: ['0']
     });
 
     this.showOldLendingForm = false;
   }
 
+  // Get all lendings entries
   public getLendings() {
     this.filtred = false;
     this.lendingList = this.lendingService.getLendings()
@@ -54,48 +71,68 @@ export class LendingListComponent implements OnInit {
       );
   }
 
+  // Get all vehicles entries
+  public getVehicles() {
+    this.tractorService.getCars()
+      .subscribe(
+        vehicle => this.vehicleList = vehicle,
+        error => console.error('Error: ' + error),
+        () => console.log('getVehicles() completed!')
+      );
+  }
+
+  // Get all vehicles entries
+  public getClients() {
+    this.clientService.getClients()
+      .subscribe(
+        client => this.clientList = client,
+        error => console.error('Error: ' + error),
+        () => console.log('getClients() completed!')
+      );
+  }
+
+  // Return filter lendings
   public filterLending() {
     let filter: LendingSearchParams = {
       dateFrom: this.filterForm.value.dateFrom,
       dateTo: this.filterForm.value.dateTo
     };
-
-    console.log("asd");
-
     this.filtred = true;
     this.lendingService.findLendings(filter).subscribe(
       lendings => this.lendingList = lendings,
       error => console.error('Error: ' + error),
-      () => console.log('Completed!')
+      () => console.log( this.lendingList + 'filterLending() completed!')
     );
   }
 
+  //
   public reloadLendings() {
     this.getLendings();
     this.showNewLendingForm = false;
   }
 
-    public reloadLendingOverOldLendingForm() {
+  //
+  public reloadLendingOverOldLendingForm() {
     this.getLendings();
     this.showOldLendingForm = false;
   }
 
-  public createNewClient() {
-    // NEVIEM AKO SA TO ROBI
+  //
+  public createNewLending() {
     this.addNewLending(this.newLendingForm.value);
   }
 
+  // 
   public addNewLending(newLending: any) {
-    console.log('Adding new client.');
+    console.log('Adding new lending.');
     this.lendingService.addLending(newLending).subscribe(
       () => this.reloadLendings(),
       error => console.error('Error: ' + error),
-      () => console.log('Completed!')
+      () => console.log('addNewLending() completed!')
     );
   }
 
-
-  // CUSTOM FUNCTION
+  //
   public findLending(id: string) {
     let filter: ClientSearchParams = {
       id: id
@@ -120,6 +157,7 @@ export class LendingListComponent implements OnInit {
     );
   }
 
+  //
   public editOldLending() {
     console.log('Editing old lending.');
     this.oldLending = this.oldLendingForm.value;
@@ -131,4 +169,6 @@ export class LendingListComponent implements OnInit {
     );
   }
 
+  // 
+  public reloadLendingsOverOldLendingForm() {}
 }

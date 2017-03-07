@@ -46,10 +46,10 @@ public class Lending {
 	private Client carClient;
 
 	@Column(name = "lattitude")
-	private int lattitude;
+	private Integer lattitude;
 
 	@Column(name = "longitude")
-	private int longitude;
+	private Integer longitude;
 
 	/**
 	 * @return the id
@@ -138,28 +138,28 @@ public class Lending {
 	/**
 	 * @return the lattitude
 	 */
-	public int getLattitude() {
+	public Integer getLattitude() {
 		return lattitude;
 	}
 
 	/**
 	 * @param lattitude the lattitude to set
 	 */
-	public void setLattitude(final int lattitude) {
+	public void setLattitude(final Integer lattitude) {
 		this.lattitude = lattitude;
 	}
 
 	/**
 	 * @return the longitude
 	 */
-	public int getLongitude() {
+	public Integer getLongitude() {
 		return longitude;
 	}
 
 	/**
 	 * @param longitude the longitude to set
 	 */
-	public void setLongitude(final int longitude) {
+	public void setLongitude(final Integer longitude) {
 		this.longitude = longitude;
 	}
 

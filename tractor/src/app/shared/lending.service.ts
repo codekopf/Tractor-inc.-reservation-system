@@ -9,13 +9,16 @@ import { Http, URLSearchParams, Headers, RequestOptions } from '@angular/http';
 export class LendingService {
   constructor(private http: Http) {}
 
-  // Returns info about selected lending
-  // TODO
+  //
+  // Returns all info of single lending
+  //
   getLending(id: number) {
     return this.http.get(`http://localhost:8095/car-evidence-js/lending/${id}`).map(res => res.json());
   }
 
-  // Returns info about selected lending
+  //
+  // Returns all info of all lendings
+  //
   getLendings() {
     return this.http.get(`http://localhost:8095/car-evidence-js/lendings`).map(res => res.json());
   }
@@ -54,6 +57,18 @@ export class LendingService {
       JSON.stringify(lending),
       options);
   }
+
+ findLending(filter: any) {
+   let headers = new Headers({ 'Content-Type': 'application/json' , 'Accept': 'application/json', });
+    let options = new RequestOptions({ headers: headers });
+    console.log(filter);
+     return this.http.post(
+      'http://localhost:8095/car-evidence-js/clients/update',
+      JSON.stringify(filter),
+      options);
+ }
+
+
 
   // Updated selected lending
   // TODO

@@ -17,7 +17,7 @@ export class TractorService {
 
   // Returns info about selected car
   getCars() {
-    return this.http.get(`http://localhost:8095/car-evidence-js/cars`).map(res => res.json());
+    return this.http.get('http://localhost:8095/car-evidence-js/cars').map(res => res.json());
   }
 
   // Returns all cars

@@ -1,7 +1,14 @@
 <div class="lending-list">
-  <h2 class="title">Zoznam poziciek</h2>
 
+  <h2 class="title">Zoznam pôžičiek</h2>
+
+  <!--
+  *
+  * Editacia klienta
+  *  
+  -->
   <div class="panel panel-default" *ngIf="showOldLendingForm">
+
     <div class="panel-heading">Editovať klienta
       <button type="button" class="btn btn-warning btn-xs pull-right" (click)="showOldLendingForm=false">Zavrieť</button>
     </div>
@@ -39,23 +46,32 @@
         <input type="hidden" id="id" formControlName="id" value="{{id}}">
       </form>
     </div>
+
     <div class="panel-footer">
       <button type="button" class="btn btn-warning pull-right" (click)="showOldLendingForm=false">Zavrieť</button>
       <button type="submit" class="btn btn-primary" (click)="editOldLending()">Uložiť</button>
     </div>
-  </div>
 
+  </div><!-- Koniec editacie klienta -->
+
+  <!--
+  *
+  * Pridanie novej pôžičky
+  *  
+  -->
   <div class="panel panel-default" *ngIf="showNewLendingForm">
-    <div class="panel-heading">Pridať novu pozicku
+
+    <div class="panel-heading">Pridať novú pôžičku
       <button type="button" class="btn btn-warning btn-xs pull-right" (click)="showNewLendingForm=false">Zavrieť</button>
     </div>
 
     <div class="panel-body">
-
-      <form class="form" [formGroup]="newLendingForm" (ngSubmit)="createNewLending()">
+      <form class="form" [formGroup]="newLendingForm" (ngSubmit)="addNewLending()">
         <div class="form-group">
           <label for="car">Auto</label>
-          <input type="text" class="form-control" formControlName="car" id="car">
+          <select class="form-control">
+            <option *ngFor="let vehicle of vehicleList" value="{{vehicle.id}}">{{vehicle.vin}}</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="od">Od</label>
@@ -71,7 +87,9 @@
         </div>
         <div class="form-group">
           <label for="client">Klient</label>
-          <input type="text" class="form-control" formControlName="client" id="client">
+          <select class="form-control">
+            <option *ngFor="let client of clientList" value="{{client.id}}" id="client">{{client.clientName}}</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="lattitude">Lattitude</label>
@@ -82,40 +100,56 @@
           <input type="text" class="form-control" formControlName="longitude" id="longitude">
         </div>
       </form>
-
     </div>
+
     <div class="panel-footer">
       <button type="button" class="btn btn-warning pull-right" (click)="showNewLendingForm=false">Zavřít</button>
-      <button type="submit" class="btn btn-primary" (click)="createNewLending()">Ulož</button>
+      <button type="submit" class="btn btn-primary" (click)="addNewLending()">Ulož</button>
     </div>
-  </div>
 
+  </div><!-- Koniec pridania nového klienta -->
+
+  <!--
+  *
+  * Zoznam pôžičiek
+  *  
+  -->
   <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">Zoznam poziciek
+
+    <div class="panel-heading">Zoznam pôžičiek
       <button *ngIf="!showNewLendingForm" type="button" class="btn btn-default btn-xs pull-right"
               (click)="showNewLendingForm=true">Přidať
       </button>
     </div>
+    
     <div class="panel-body">
       <form [formGroup]="filterForm" class="lending-filter" (ngSubmit)="filterLending()" class="form-inline">
         <div class="form-group">
           <label for="dateFrom">Od</label>
-          <input type="text" class="form-control" formControlName="dateFrom" id="dateFrom">
+          <input type="date" class="form-control" formControlName="dateFrom" id="dateFrom">
         </div>
         <div class="form-group">
           <label for="dateTo">Do</label>
-          <input type="text" class="form-control" formControlName="dateTo" id="dateTo">
+          <input type="date" class="form-control" formControlName="dateTo" id="dateTo">
         </div>
         <button type="submit" class="btn btn-default">Filtruj</button>
         <button type="button" class="btn btn-warning" (click)="filtred && getLending()" [ngClass]="{disabled : !filtred}">
           Zruš filtr
         </button>
       </form>
+      
     </div>
 
-    <!-- Table -->
-    <table class="table table-striped" *ngIf="lendingList && lendingList.length">
+  </div>
+
+  <!--
+  *
+  * Tabuľka zoznamu pôžičiek
+  *  
+  -->
+  <div class="panel panel-default" *ngIf="lendingList && lendingList.length">
+
+    <table class="table table-striped">
       <thead>
       <tr>
         <th>ID</th>
@@ -141,8 +175,14 @@
         <td class="text-center"><button type="button" class="btn btn-default btn-xs" (click)="findLending(lending.id)" >Editovať</button></td>
       </tr>
     </table>
-    <p *ngIf="!lendingList || !lendingList.length">Upresniete filter pre pozicky</p>
+    
+  </div><!-- Koniec tabuľky zoznamu pôžičiek -->
 
-  </div>
+  <!--
+  *
+  * Warning: prázdna, nefiltrovana tabuľka 
+  *  
+  -->
+  <div *ngIf="!lendingList || !lendingList.length"  class="alert alert-success" role="alert">Prosím upresnite filter pre pôžičky.</div>
 
 </div>
