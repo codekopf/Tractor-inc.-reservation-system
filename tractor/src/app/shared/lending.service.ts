@@ -29,6 +29,7 @@ export class LendingService {
     parameters.set('type', params.type);
     parameters.set('dateFrom', params.dateFrom);
     parameters.set('dateTo', params.dateTo);
+    console.log(parameters);
     return this.http.get('http://localhost:8095/car-evidence-js/lendings/vehicles', {search: parameters}).map(res => res.json());
   }
 

@@ -8,15 +8,31 @@
       <form class="form" [formGroup]="newCarForm" (ngSubmit)="createNewCar()">
         <div class="form-group">
           <label for="type">Typ</label>
-          <input type="text" class="form-control" formControlName="type" id="type">
+          <!--<input type="text" class="form-control" formControlName="type" id="type">-->
+
+          <select class="form-control" formControlName="type">
+            <option value="BULLDOZER">BULLDOZER</option>
+            <option value="TRACTOR">TRACTOR</option>
+            <option value="DREDGING">DREDGING</option>
+            <option value="EXCAVATOR">EXCAVATOR</option>
+            <option value="RECLAIMER">RECLAIMER</option>
+            <option value="SKIDDER">SKIDDER</option>
+            <option value="LOADER">LOADER</option>
+            <option value="FORKLIFT">FORKLIFT</option>
+            <option value="DUMP_TRUCK">DUMP_TRUCK</option>
+            <option value="ROAD_ROLLER">ROAD_ROLLER</option>
+            <option value="TRACKED_LOADER">TRACKED_LOADER</option>
+          </select>
         </div>
+
+
         <div class="form-group">
           <label for="vin">VIN</label>
           <input type="text" class="form-control" formControlName="vin" id="vin">
         </div>
         <div class="form-group">
           <label for="testDatum">Datum</label>
-          <input type="text" class="form-control" formControlName="testDatum" id="testDatum">
+          <input type="date" class="form-control" formControlName="testDatum" id="testDatum">
         </div>
         <div class="form-group">
           <label for="price">Cena</label>

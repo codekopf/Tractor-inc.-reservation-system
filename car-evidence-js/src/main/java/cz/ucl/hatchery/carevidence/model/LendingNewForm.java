@@ -6,6 +6,8 @@ package cz.ucl.hatchery.carevidence.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import cz.ucl.hatchery.carevidence.entity.Client;
+
 /**
  * @author User
  *
@@ -14,11 +16,14 @@ public class LendingNewForm {
 
 	private Long id;
 	// private Car car;
+	// private Long carId;
+
 	private Long car;
+
 	private Date dateFrom;
 	private Date dateTo;
 	private BigDecimal price;
-	// private Client carClient;
+	private Client carClient;
 	private Long client;
 	private int lattitude;
 	private int longitude;
@@ -38,14 +43,63 @@ public class LendingNewForm {
 	}
 
 	/**
-	 * @return the carId
+	 * @return the carClient
+	 */
+	public Client getCarClient() {
+		return carClient;
+	}
+
+	/**
+	 * @param carClient the carClient to set
+	 */
+	public void setCarClient(final Client carClient) {
+		this.carClient = carClient;
+	}
+
+	// /**
+	// * @param carId the carId to set
+	// */
+	// public void setCarId(final Long carId) {
+	// this.carId = carId;
+	// }
+	//
+	// /**
+	// * @return the carId
+	// */
+	// public Car getCar() {
+	// return car;
+	// }
+	//
+	// /**
+	// * @param carId the carId to set
+	// */
+	// public void setCarId(final Car car) {
+	// this.car = car;
+	// }
+	//
+	// /**
+	// * @return the car
+	// */
+	// public Long getCarId() {
+	// return carId;
+	// }
+	//
+	// /**
+	// * @param car the car to set
+	// */
+	// public void setCar(final Car car) {
+	// this.car = car;
+	// }
+
+	/**
+	 * @return the car
 	 */
 	public Long getCar() {
 		return car;
 	}
 
 	/**
-	 * @param carId the carId to set
+	 * @param car the car to set
 	 */
 	public void setCar(final Long car) {
 		this.car = car;
@@ -64,20 +118,6 @@ public class LendingNewForm {
 	public void setId(final Long id) {
 		this.id = id;
 	}
-
-	// /**
-	// * @return the car
-	// */
-	// public Car getCar() {
-	// return car;
-	// }
-	//
-	// /**
-	// * @param car the car to set
-	// */
-	// public void setCar(final Car car) {
-	// this.car = car;
-	// }
 
 	/**
 	 * @return the dateFrom

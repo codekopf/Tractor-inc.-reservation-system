@@ -31,10 +31,10 @@ export class TractorListComponent implements OnInit {
 
 
     this.newCarForm = this.fb.group({
-      type: ['RECLAIMER'],
-      vin: ['AHTBB3QD001726541'],
-      testDatum: [1487812893],
-      price: [1100000]
+      type: null,
+      vin: null,
+      testDatum: null,
+      price: null
     });
 
   }

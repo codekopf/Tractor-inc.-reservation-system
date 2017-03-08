@@ -4,7 +4,7 @@
 
   <!--
   *
-  * Editacia klienta po novom
+  * Pridanie novej pôžičky
   *  
   -->
   <div class="panel panel-default">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="form-group" >
-          <button type="button" class="btn btn-primary" (click)="searchAvailableVehicle()" *ngIf="!availableVehicleList">availableVehicleList</button>
+          <button type="button" class="btn btn-primary" (click)="searchAvailableVehicle()" *ngIf="!availableVehicleList">Dostupné vozidlá</button>
           <label for="vin" *ngIf="availableVehicleList">VIN</label>
           <select class="form-control" *ngIf="availableVehicleList" formControlName="car">
             <option *ngFor="let vinItem of availableVehicleList" value="{{vinItem.carId}}" id="vin" >{{vinItem.vin}}</option>
@@ -68,17 +68,12 @@
         </div>
 
         <div class="form-group" *ngIf="availableVehicleList">
-          <button type="button" class="btn btn-primary" (click)="createNewLending()">Ulož</button>
+          <button type="button" class="btn btn-primary" (click)="createNewLending()">Uložiť</button>
         </div>
 
       </form>
     </div>
 
-    <div class="panel-footer">
-      <button type="submit" class="btn btn-primary" (click)="createNewLending()">Odoslať</button>
-    </div>
+  </div><!-- Koniec pridávania novej pôžičky -->
 
-  </div><!-- Koniec editacie klienta -->
-
- 
 </div>

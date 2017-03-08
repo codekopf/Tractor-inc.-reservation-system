@@ -47,6 +47,7 @@ public class LendingManagerServiceBean implements LendingManagerService {
 		final Lending lending = createGeneralLending();
 
 		final Long car = lendingNewForm.getCar();
+		// final Long car = lendingNewForm.getCarId();
 		final Long client = lendingNewForm.getClient();
 
 		lending.setCar(carDAO.findById(car));
@@ -85,15 +86,15 @@ public class LendingManagerServiceBean implements LendingManagerService {
 	 * @param clientNewForm
 	 * @param client
 	 */
-	private void setFieldFromDto(final LendingNewForm lendingNewForm, final Lending lending) {
-		lending.setCar(lendingNewForm.getCar());
-		lending.setDateFrom(lendingNewForm.getDateFrom());
-		lending.setDateTo(lendingNewForm.getDateTo());
-		lending.setPrice(lendingNewForm.getPrice());
-		lending.setCarClient(lendingNewForm.getCarClient());
-		lending.setLattitude(lendingNewForm.getLattitude());
-		lending.setLongitude(lendingNewForm.getLongitude());
-	}
+	// private void setFieldFromDto(final LendingNewForm lendingNewForm, final Lending lending) {
+	// lending.setCar(lendingNewForm.getCar());
+	// lending.setDateFrom(lendingNewForm.getDateFrom());
+	// lending.setDateTo(lendingNewForm.getDateTo());
+	// lending.setPrice(lendingNewForm.getPrice());
+	// lending.setCarClient(lendingNewForm.getCarClient());
+	// lending.setLattitude(lendingNewForm.getLattitude());
+	// lending.setLongitude(lendingNewForm.getLongitude());
+	// }
 
 	/**
 	 * @param client
