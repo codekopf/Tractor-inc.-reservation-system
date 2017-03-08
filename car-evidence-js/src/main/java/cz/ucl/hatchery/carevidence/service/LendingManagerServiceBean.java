@@ -4,6 +4,7 @@
  */
 package cz.ucl.hatchery.carevidence.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cz.ucl.hatchery.carevidence.dao.LendingDAO;
 import cz.ucl.hatchery.carevidence.entity.Lending;
+import cz.ucl.hatchery.carevidence.model.AvailableCar;
 import cz.ucl.hatchery.carevidence.model.LendingDTO;
 import cz.ucl.hatchery.carevidence.model.LendingFilter;
 import cz.ucl.hatchery.carevidence.model.LendingNewForm;
 import cz.ucl.hatchery.carevidence.model.LendingOldForm;
+import cz.ucl.hatchery.carevidence.model.enumeration.CarsType;
 import cz.ucl.hatchery.carevidence.util.DTOConverter;
 
 /**
@@ -105,9 +108,14 @@ public class LendingManagerServiceBean implements LendingManagerService {
 
 	/** {@inheritDoc} */
 	@Override
-	public List<LendingDTO> findAvailableVehicleByFilter(final LendingFilter filter) {
+	public List<AvailableCar> findAvailableVehicleByFilter(final LendingFilter filter) {
+		final List<AvailableCar> result = new ArrayList<>();
 
-		return DTOConverter.convertLending(lendingDAO.findAvailableVehicleByFilter(filter));
+		final List<Object[]> availableVehicle = lendingDAO.findAvailableVehicleByFilter(filter);
+		for (final Object[] objects : availableVehicle) {
+			result.add(new AvailableCar((Long) objects[0], (CarsType) objects[1], (String) objects[2]));
+		}
+		return result;
 	}
 
 }

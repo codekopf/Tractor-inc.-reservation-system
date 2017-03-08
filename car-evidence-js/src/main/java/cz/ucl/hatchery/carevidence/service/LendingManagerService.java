@@ -5,6 +5,7 @@ package cz.ucl.hatchery.carevidence.service;
 
 import java.util.List;
 
+import cz.ucl.hatchery.carevidence.model.AvailableCar;
 import cz.ucl.hatchery.carevidence.model.LendingDTO;
 import cz.ucl.hatchery.carevidence.model.LendingFilter;
 import cz.ucl.hatchery.carevidence.model.LendingNewForm;
@@ -22,7 +23,7 @@ public interface LendingManagerService {
 
 	public List<LendingDTO> findLendingByFilter(LendingFilter filter);
 
-	public List<LendingDTO> findAvailableVehicleByFilter(LendingFilter filter);
+	public List<AvailableCar> findAvailableVehicleByFilter(LendingFilter filter);
 
 	public void saveOrUpdate(LendingOldForm oldLendingForm);
 

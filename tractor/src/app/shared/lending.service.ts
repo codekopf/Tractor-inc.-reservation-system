@@ -29,7 +29,6 @@ export class LendingService {
     parameters.set('type', params.type);
     parameters.set('dateFrom', params.dateFrom);
     parameters.set('dateTo', params.dateTo);
-
     return this.http.get('http://localhost:8095/car-evidence-js/lendings/vehicles', {search: parameters}).map(res => res.json());
   }
 
@@ -60,7 +59,7 @@ export class LendingService {
     let options = new RequestOptions({ headers: headers });
 
     // TODO OOOOO
-    console.log("ZOBRAZI SA TOTO?");
+    console.log('ZOBRAZI SA TOTO?');
     console.log(lending);
     return this.http.post(
       'http://localhost:8095/car-evidence-js/clients/update',

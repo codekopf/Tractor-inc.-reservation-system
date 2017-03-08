@@ -8,6 +8,7 @@ import java.util.Date;
 
 import cz.ucl.hatchery.carevidence.entity.Car;
 import cz.ucl.hatchery.carevidence.entity.Client;
+import cz.ucl.hatchery.carevidence.model.enumeration.CarsType;
 
 /**
  * @author User
@@ -24,7 +25,7 @@ public class LendingFilter {
 	private Integer lattitude;
 	private Integer longitude;
 
-	private String type;
+	private CarsType type;
 
 	/**
 	 * @param id
@@ -37,7 +38,7 @@ public class LendingFilter {
 	 * @param longitude
 	 */
 	public LendingFilter(final Long id, final Car car, final Date dateFrom, final Date dateTo, final BigDecimal price,
-			final Client carClient, final int lattitude, final int longitude, final String type) {
+			final Client carClient, final int lattitude, final int longitude, final CarsType type) {
 		super();
 		this.id = id;
 		this.car = car;
@@ -53,14 +54,14 @@ public class LendingFilter {
 	/**
 	 * @return the type
 	 */
-	public String getType() {
+	public CarsType getType() {
 		return type;
 	}
 
 	/**
 	 * @param type the type to set
 	 */
-	public void setType(final String type) {
+	public void setType(final CarsType type) {
 		this.type = type;
 	}
 

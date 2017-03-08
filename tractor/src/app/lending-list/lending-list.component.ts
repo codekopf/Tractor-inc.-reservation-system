@@ -118,11 +118,13 @@ export class LendingListComponent implements OnInit {
 
   // searchAvailableVehicle
   public searchAvailableVehicle() {
+    console.log('ASDDDDDD');
     let filter: LendingSearchParams = {
       type: this.filterForm.value.type,
       dateFrom: this.filterForm.value.dateFrom,
       dateTo: this.filterForm.value.dateTo
     };
+    console.log('ASD');
     this.filtred = true;
     this.lendingService. filterAvailableVehicles(filter).subscribe(
       vehicles => this.availableVehicleList = vehicles,

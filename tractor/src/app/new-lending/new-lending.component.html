@@ -10,10 +10,11 @@
   <div class="panel panel-default">
 
     <div class="panel-body">
-      <form class="form" [formGroup]="oldLendingForm" (ngSubmit)="createNewLending()">
+      <form class="form" [formGroup]="filterForm" (ngSubmit)="createNewLending()">
+
         <div class="form-group">
-          <label for="typ">Typ</label>
-          <select formControlName="type" >
+          <label for="type">Typ</label>
+          <select class="form-control" formControlName="type">
             <option value="BULLDOZER">BULLDOZER</option>
             <option value="TRACTOR">TRACTOR</option>
             <option value="DREDGING">DREDGING</option>
@@ -27,6 +28,7 @@
             <option value="TRACKED_LOADER">TRACKED_LOADER</option>
           </select>
         </div>
+
         <div class="form-group">
           <label for="od">Od</label>
           <input type="date" class="form-control" formControlName="dateFrom" id="od">
@@ -36,16 +38,14 @@
           <input type="date" class="form-control" formControlName="dateTo" id="do">
         </div>
 
-        <div class="form-group">
-          <button type="button" class="btn btn-primary" (click)="searchAvailableVehicle()">availableVehicleList</button>
-          <div *ngIf="availableVehicleList">
-
-          <label for="vin">VIN</label>
-          <select id="vin" formControlName="vin">
-            <option *ngFor="let vinItem of availableVehicleList" [value]="vinItem.id">{{vinItem?.vin}}</option>
+        <div class="form-group" >
+          <button type="button" class="btn btn-primary" (click)="searchAvailableVehicle()" *ngIf="!availableVehicleList">availableVehicleList</button>
+          <label for="vin" *ngIf="availableVehicleList">VIN</label>
+          <select class="form-control" *ngIf="availableVehicleList">
+            <option *ngFor="let vinItem of availableVehicleList" value="{{vinItem.id}}" id="client">{{vinItem.vin}}</option>
           </select>
-          </div>
         </div>
+
       </form>
     </div>
 

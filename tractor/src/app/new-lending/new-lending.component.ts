@@ -38,10 +38,17 @@ export class NewLendingListComponent implements OnInit {
 
     // Establishing lists with clients and vehicles for creating new entry
     // this.getClients();
+
   }
 
   ngOnInit() {
     console.log('OnInit - Setting lending list');
+
+    this.filterForm = this.fb.group({
+      type: null,
+      dateFrom: null,
+      dateTo: null
+    });
 
     this.oldLendingForm = this.fb.group({
       dateFrom: ['2015-10-10'],
@@ -63,7 +70,7 @@ export class NewLendingListComponent implements OnInit {
       );
   }
 
-  
+
   // searchAvailableVehicle
   public searchAvailableVehicle() {
     let filter: LendingSearchParams = {
@@ -71,7 +78,11 @@ export class NewLendingListComponent implements OnInit {
       dateFrom: this.filterForm.value.dateFrom,
       dateTo: this.filterForm.value.dateTo
     };
+    // debugger;
     this.filtred = true;
+    
+    console.log(filter);
+    
     this.lendingService. filterAvailableVehicles(filter).subscribe(
       vehicles => this.availableVehicleList = vehicles,
       error => console.error('Error: ' + error),
@@ -89,7 +100,7 @@ export class NewLendingListComponent implements OnInit {
   public addNewLending(newLending: any) {
     console.log('Adding new lending.');
     this.lendingService.addLending(newLending).subscribe(
-      //todo
+      //TODO
       error => console.error('Error: ' + error),
       () => console.log('addNewLending() completed!')
     );
@@ -132,6 +143,6 @@ export class NewLendingListComponent implements OnInit {
     );
   }
 
-  // 
+  //
   public reloadLendingsOverOldLendingForm() {}
 }

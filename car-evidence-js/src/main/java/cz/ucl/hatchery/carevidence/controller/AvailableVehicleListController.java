@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import cz.ucl.hatchery.carevidence.model.LendingDTO;
+import cz.ucl.hatchery.carevidence.model.AvailableCar;
 import cz.ucl.hatchery.carevidence.model.LendingFilter;
 import cz.ucl.hatchery.carevidence.service.LendingManagerService;
 import cz.ucl.hatchery.carevidence.web.CommonConstants;
@@ -48,13 +48,13 @@ public class AvailableVehicleListController {
 	// @RequestParam(required = false) final Date acquiredTo,
 	// @RequestParam(required = false) final Date lastTechnicalCheckFrom,
 	// @RequestParam(required = false) final Date lastTechnicalCheckTo) {
-	public LendingDTO[] findAvailableVehicleByFilter(final LendingFilter lendingFilter) {
+	public AvailableCar[] findAvailableVehicleByFilter(final LendingFilter lendingFilter) {
 
 		// final CarFilter filter = new CarFilter(id, type, vin, state, priceFrom, priceTo, acquiredFrom, acquiredTo,
 		// lastTechnicalCheckFrom, lastTechnicalCheckTo);
-		final List<LendingDTO> result = lendingService.findAvailableVehicleByFilter(lendingFilter);
+		final List<AvailableCar> result = lendingService.findAvailableVehicleByFilter(lendingFilter);
 
-		return result.toArray(new LendingDTO[result.size()]);
+		return result.toArray(new AvailableCar[result.size()]);
 	}
 
 	// @RequestMapping(value = "/update", method = RequestMethod.POST)

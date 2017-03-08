@@ -30,8 +30,9 @@ public class LendingDAOBean extends GenericHibernateDAO<Lending, Long> implement
 		return query.list();
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
-	public List<Lending> findAvailableVehicleByFilter(final LendingFilter filter) {
+	public List<Object[]> findAvailableVehicleByFilter(final LendingFilter filter) {
 		final Query query = createQueryFromLendingFilterForAvailableVehicles(filter);
 
 		return query.list();
@@ -54,22 +55,23 @@ public class LendingDAOBean extends GenericHibernateDAO<Lending, Long> implement
 
 	private Query createQueryFromLendingFilterForAvailableVehicles(final LendingFilter filter) {
 
-		final QueryBuilder builder =
-				new QueryBuilder(getSession(), "SELECT C.cars_type, C.vin FROM car AS C WHERE 1 = 1");
+		final QueryBuilder builder = new QueryBuilder(getSession(), "SELECT C.id, C.type, C.vin FROM Car AS C WHERE ");
 
 		System.out.println("HALOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 
-		builder.appendIfNotNull("C.cars_type = :type", "type", filter.getType());
+		builder.appendIfNotNull("C.type = :type", "type", filter.getType());
 		builder.appendIfNotNull(
-				"AND NOT EXISTS (SELECT * FROM lending AS L WHERE C.id = L.car AND ( (L.date_from BETWEEN :dateFrom",
+				"AND NOT EXISTS (SELECT L.dateFrom, L.dateTo FROM Lending AS L, Car AS CA WHERE CA.id = L.car AND ( (L.dateFrom BETWEEN :dateFrom",
 				"dateFrom", filter.getDateFrom());
-		builder.appendIfNotNull("AND :dateTo", "dateTo", filter.getDateTo());
-		builder.appendIfNotNull(") OR (L.date_to BETWEEN AND :dateFrom", "dateFrom", filter.getDateFrom());
-		builder.appendIfNotNull("AND :dateTo", "dateTo", filter.getDateTo());
-		builder.appendIfNotNull(" ) OR (L.date_from <= :dateFrom", "dateFrom", filter.getDateFrom());
-		builder.appendIfNotNull(" AND L.date_to >= :dateTo", "dateTo", filter.getDateTo());
-		builder.appendIfNotNull(" ) OR (L.date_from >=  :dateFrom", "dateFrom", filter.getDateFrom());
-		builder.appendIfNotNull(" AND L.date_to <=  :dateTo", "dateTo", filter.getDateTo());
+		builder.appendIfNotNull(" AND :dateTo", "dateTo", filter.getDateTo());
+		builder.appendIfNotNull(" ) OR (L.dateTo BETWEEN :dateFrom", "dateFrom", filter.getDateFrom());
+		builder.appendIfNotNull(" AND :dateTo", "dateTo", filter.getDateTo());
+		builder.appendIfNotNull(" ) OR (L.dateFrom <= :dateFrom", "dateFrom", filter.getDateFrom());
+		builder.appendIfNotNull(" AND L.dateTo >= :dateTo", "dateTo", filter.getDateTo());
+		builder.appendIfNotNull(" ) OR (L.dateFrom >=  :dateFrom", "dateFrom", filter.getDateFrom());
+		builder.appendIfNotNull(" AND L.dateTo <=  :dateTo )))", "dateTo", filter.getDateTo());
+
+		// System.out.println(builder.toString());
 
 		return builder.build();
 
