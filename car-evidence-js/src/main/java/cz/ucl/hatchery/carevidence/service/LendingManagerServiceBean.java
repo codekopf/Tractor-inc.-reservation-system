@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cz.ucl.hatchery.carevidence.dao.CarDAO;
+import cz.ucl.hatchery.carevidence.dao.ClientDAO;
 import cz.ucl.hatchery.carevidence.dao.LendingDAO;
 import cz.ucl.hatchery.carevidence.entity.Lending;
 import cz.ucl.hatchery.carevidence.model.AvailableCar;
@@ -33,13 +35,30 @@ public class LendingManagerServiceBean implements LendingManagerService {
 	@Autowired
 	private LendingDAO lendingDAO;
 
+	@Autowired
+	private CarDAO carDAO;
+
+	@Autowired
+	private ClientDAO clientDAO;
+
 	@Override
 	public void createNewLending(final LendingNewForm lendingNewForm) {
 
 		final Lending lending = createGeneralLending();
 
-		// set parametrs from dto
-		setFieldFromDto(lendingNewForm, lending);
+		final Long car = lendingNewForm.getCar();
+		final Long client = lendingNewForm.getClient();
+
+		lending.setCar(carDAO.findById(car));
+		lending.setDateFrom(lendingNewForm.getDateFrom());
+		lending.setDateTo(lendingNewForm.getDateTo());
+		lending.setPrice(lendingNewForm.getPrice());
+		lending.setCarClient(clientDAO.findById(client));
+		lending.setLattitude(lendingNewForm.getLattitude());
+		lending.setLongitude(lendingNewForm.getLongitude());
+
+		// // set parametrs from dto
+		// setFieldFromDto(lendingNewForm, lending);
 
 		save(lending);
 	}

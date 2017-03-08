@@ -6,9 +6,6 @@ package cz.ucl.hatchery.carevidence.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import cz.ucl.hatchery.carevidence.entity.Car;
-import cz.ucl.hatchery.carevidence.entity.Client;
-
 /**
  * @author User
  *
@@ -16,13 +13,43 @@ import cz.ucl.hatchery.carevidence.entity.Client;
 public class LendingNewForm {
 
 	private Long id;
-	private Car car;
+	// private Car car;
+	private Long car;
 	private Date dateFrom;
 	private Date dateTo;
 	private BigDecimal price;
-	private Client carClient;
+	// private Client carClient;
+	private Long client;
 	private int lattitude;
 	private int longitude;
+
+	/**
+	 * @return the clientId
+	 */
+	public Long getClient() {
+		return client;
+	}
+
+	/**
+	 * @param clientId the clientId to set
+	 */
+	public void setClient(final Long client) {
+		this.client = client;
+	}
+
+	/**
+	 * @return the carId
+	 */
+	public Long getCar() {
+		return car;
+	}
+
+	/**
+	 * @param carId the carId to set
+	 */
+	public void setCar(final Long car) {
+		this.car = car;
+	}
 
 	/**
 	 * @return the id
@@ -38,19 +65,19 @@ public class LendingNewForm {
 		this.id = id;
 	}
 
-	/**
-	 * @return the car
-	 */
-	public Car getCar() {
-		return car;
-	}
-
-	/**
-	 * @param car the car to set
-	 */
-	public void setCar(final Car car) {
-		this.car = car;
-	}
+	// /**
+	// * @return the car
+	// */
+	// public Car getCar() {
+	// return car;
+	// }
+	//
+	// /**
+	// * @param car the car to set
+	// */
+	// public void setCar(final Car car) {
+	// this.car = car;
+	// }
 
 	/**
 	 * @return the dateFrom
@@ -94,19 +121,19 @@ public class LendingNewForm {
 		this.price = price;
 	}
 
-	/**
-	 * @return the carClient
-	 */
-	public Client getCarClient() {
-		return carClient;
-	}
-
-	/**
-	 * @param carClient the carClient to set
-	 */
-	public void setCarClient(final Client carClient) {
-		this.carClient = carClient;
-	}
+	// /**
+	// * @return the carClient
+	// */
+	// public Client getCarClient() {
+	// return carClient;
+	// }
+	//
+	// /**
+	// * @param carClient the carClient to set
+	// */
+	// public void setCarClient(final Client carClient) {
+	// this.carClient = carClient;
+	// }
 
 	/**
 	 * @return the lattitude

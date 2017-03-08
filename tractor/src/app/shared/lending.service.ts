@@ -45,6 +45,7 @@ export class LendingService {
   addLending(lending: any) {
     let headers = new Headers({ 'Content-Type': 'application/json' , 'Accept': 'application/json', });
     let options = new RequestOptions({ headers: headers });
+    console.log(lending);
 
     return this.http.post(
       'http://localhost:8095/car-evidence-js/lendings/new',

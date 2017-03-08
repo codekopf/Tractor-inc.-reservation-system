@@ -37,7 +37,7 @@ export class NewLendingListComponent implements OnInit {
     // this.getLendings();
 
     // Establishing lists with clients and vehicles for creating new entry
-    // this.getClients();
+    this.getClients();
 
   }
 
@@ -47,7 +47,12 @@ export class NewLendingListComponent implements OnInit {
     this.filterForm = this.fb.group({
       type: null,
       dateFrom: null,
-      dateTo: null
+      dateTo: null,
+      car: null,
+      client: null,
+      price: null,
+      longitude: null, 
+      lattitude: null
     });
 
     this.oldLendingForm = this.fb.group({
@@ -93,56 +98,63 @@ export class NewLendingListComponent implements OnInit {
 
   //
   public createNewLending() {
-    this.addNewLending(this.newLendingForm.value);
+    // this.filterForm = this.fb.group({
+    //   type: this.filterForm.value.type,
+    //   dateFrom: this.filterForm.value.dateFrom,
+    //   dateTo: this.filterForm.value.dateTo
+    //   vin: this.filterForm.value.vin,
+    //   client: this.filterForm.value.client,
+    // });
+    this.addNewLending(this.filterForm.value);
   }
 
   // 
   public addNewLending(newLending: any) {
     console.log('Adding new lending.');
     this.lendingService.addLending(newLending).subscribe(
-      //TODO
+      success => console.log('SUCCESS' + success),
       error => console.error('Error: ' + error),
       () => console.log('addNewLending() completed!')
     );
   }
 
   //
-  public findLending(id: string) {
-    let filter: ClientSearchParams = {
-      id: id
-    };
+  // public findLending(id: string) {
+  //   let filter: ClientSearchParams = {
+  //     id: id
+  //   };
 
-    this.lendingService.findLending(filter).subscribe(
-      lending => {
-        this.lending = lending;
-        this.oldLendingForm = this.fb.group({
-          id: lending[0].id,
-          lendingName: lending[0].lendingName,
-          lendingSurname: lending[0].lendingSurname,
-          lendingICO: lending[0].lendingICO,
-          lendingEmail: lending[0].lendingEmail,
-          lendingPhone: lending[0].lendingPhone,
-          lendingDateOfRegistraion: lending[0].lendingDateOfRegistraion
-        });
-        this.showOldLendingForm = true;
-      },
-      error => console.error('Error: ' + error),
-      () => console.log('Completed!')
-    );
-  }
+  //   this.lendingService.findLending(filter).subscribe(
+  //     lending => {
+  //       this.lending = lending;
+  //       this.oldLendingForm = this.fb.group({
+  //         id: lending[0].id,
+  //         lendingName: lending[0].lendingName,
+  //         lendingSurname: lending[0].lendingSurname,
+  //         lendingICO: lending[0].lendingICO,
+  //         lendingEmail: lending[0].lendingEmail,
+  //         lendingPhone: lending[0].lendingPhone,
+  //         lendingDateOfRegistraion: lending[0].lendingDateOfRegistraion
+  //       });
+  //       this.showOldLendingForm = true;
+  //     },
+  //     error => console.error('Error: ' + error),
+  //     () => console.log('Completed!')
+  //   );
+  // }
 
-  //
-  public editOldLending() {
-    console.log('Editing old lending.');
-    this.oldLending = this.oldLendingForm.value;
-     console.log(this.oldLending);
-    this.lendingService.editLending(this.oldLending).subscribe(
-      () => this.reloadLendingsOverOldLendingForm(),
-      error => console.error('Error: ' + error),
-      () => console.log('Completed!')
-    );
-  }
+  // //
+  // public editOldLending() {
+  //   console.log('Editing old lending.');
+  //   this.oldLending = this.oldLendingForm.value;
+  //    console.log(this.oldLending);
+  //   this.lendingService.editLending(this.oldLending).subscribe(
+  //     () => this.reloadLendingsOverOldLendingForm(),
+  //     error => console.error('Error: ' + error),
+  //     () => console.log('Completed!')
+  //   );
+  // }
 
-  //
-  public reloadLendingsOverOldLendingForm() {}
+  // //
+  // public reloadLendingsOverOldLendingForm() {}
 }
