@@ -1,0 +1,10 @@
+// styles in src/style directory are applied to the whole page
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap-sprockets.scss";
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap";
+
+
+body {
+  background: #ffffff;
+  color: #222222;
+}
+
